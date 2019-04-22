@@ -48,20 +48,17 @@ Se estiver tudo ok! Bora pra frente!
 - Intercepta uma requisição e faz alguma coisa
 - Middleare de log
 - Middleware por ser interceptador, ele pode bloquear o fluxo da requisição no express, ou não, basta configurar com next, passando como parametro, depois do req, res e chamando com return next().
-  ```
-const logMiddleware = (req, res, next) => {
+  
+  ``` const logMiddleware = (req, res, next) => {
   console.log(
     `HOST: ${req.headers.host} | URL: ${req.url} | METHOD: ${req.method}`
   );
-
-  return next();
-};
-  ```
-
+    return next(); 
+  }; ```
 - assim todas as rotas usam o middleware: app.use(logMiddleware); // passa como parametro o middleware
 - o next() faz com que a requisição não seja bloqueada no middleware, ele faz o que tem q ser feito e deixa seguir o fluxo da requisição e dar a resposta para o cliente se for o caso.
 - com o middleware é possível modificar e adicionar variáveis da requisição:
-```
+``` 
 const logMiddleware = (req, res, next) => {
   console.log(
     `HOST: ${req.headers.host} | URL: ${req.url} | METHOD: ${req.method}`
@@ -72,16 +69,31 @@ const logMiddleware = (req, res, next) => {
 
   return next();
 };
-
 ```
 - é possivel adicionar e modificar na interceptação os itens da requisição que estào na variável req, e quem estiver acessando o middleware pode ter acesso as essas informações.
 
 - se quiser que o middleare interrompa o processamento do node, retira o next e devolve uma resposta para o cliente com res.send("alguma coisa"); mas dentro do middleware
 - Pode passar quantos middlware quiser como parametros, ex:
-```
-// Utilizando o middlewaresssss
+```// Utilizando o middlewaresssss
 app.get("/", logMiddleware, logMiddleware, logMiddleware, logMiddleware (req, res) => {
   return res.send(`Bem vindo ao ${req.appName}, ${req.query.name}`);
 });
 ```
-  
+
+### QUIZ - Resumo
+
+#### Sobre o NODE: 
+- O NodeJS é uma plataforma que utiliza o motor V8 do Google Chrome para entender Javascript no lado do back-end;
+- A arquitetura Non-blocking I/O do NodeJS permite trabalharmos com múltiplos cores do processador da máquina para trabalhar com ações em paralelo;
+- Utilizamos o npm ou o yarn para instalar as dependências da nossa aplicação que ficam armazenadas na pasta node_modules e registradas no arquivo package.json;
+
+#### Sobre o EXPRESSJS:
+- O ExpressJS é um mini-framework capaz de lidar com rotas e views;
+
+#### Sobre o middlewares:
+- O middleware é um interceptador que pode, ou não, bloquear o fluxo da requisição;
+
+#### Sobre o EXPRESSJS:
+- Utilizamos o app.get para definir uma rota com o método GET;
+- Utilizamos o app.use para declarar middlewares que serão chamados em todas rotas;
+- O middleware geralmente é reconhecido por utilizar uma função que recebe os parâmetros (req, res)
