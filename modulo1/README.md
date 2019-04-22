@@ -29,3 +29,10 @@ Se estiver tudo ok! Bora pra frente!
 ### Criando servidor HTTP
 - usando módulo http para criar um servidor e ouvir na porta 3005
 - Agora já podemos ouvir na porta 3005 e ouvir as requisições http
+
+### Instalação do Express
+- ` yarn add express `
+- Agora podemos criar um servidor mais robusto para gerenciar rotas e diminuir a quantidade e complexidade do código cliente (código que de fato entrega resultado, ao invés de escrever tudo na mão - reinventar a roda)
+- configurando rotas no app
+- requisição GET na raiz, rota login e rota nome
+- recebendo parametros e queries
