@@ -26,7 +26,7 @@ app.get("/nome/:name", (req, res) => {
     }
   */
   return res.json({
-    message: `Bem vindo, ${req.params.name}`
+    message: `Welcome, ${req.params.name}`
   });
 });
 

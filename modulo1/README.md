@@ -36,3 +36,10 @@ Se estiver tudo ok! Bora pra frente!
 - configurando rotas no app
 - requisição GET na raiz, rota login e rota nome
 - recebendo parametros e queries
+
+### Instalação do Nodemon
+- `yarn add nodemon -D`
+- lib que faz hotdeploy ou autoreload da aplicação
+- precisa criar um script no package json, o nome pode ser qualquer um
+- rodar com `yarn start`
+
