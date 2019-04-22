@@ -106,3 +106,12 @@ app.get("/", logMiddleware, logMiddleware, logMiddleware, logMiddleware (req, re
 - criamos um novo template /new e sua respectiva rota
 - criamos um link de dentro da listagem de usuários para a rota /new
  
+ ### Enviando formulário
+ - utilizando método POST para salvar usuários
+ - criamos a rota /create com método post para receber os dados sem aparecer na barra de endereço
+ - configuramos o express para saber lidar como info de formulário html e receber os dados do req.body
+ - recebemos do req.body do parametro 'name' utilizado no input do nome do usuário
+ - salvamos o novo usuário em memória 
+ - fizemos o redirect após salvar o novo usuário para a listagem de usuários
+ - não seria possível fazer com php/ruby pq o array não ficaria armazenado na memória *
+ - 
