@@ -140,3 +140,8 @@ app.get("/", logMiddleware, logMiddleware, logMiddleware, logMiddleware (req, re
 ### Debugando aplicação
 
 - configurando o vscode para debugar a aplicação
+
+### Configurando EditorConfig
+
+- instalar extensão no vscode
+- criar o arquivo .editorconfig e passar as configurações desejadas
