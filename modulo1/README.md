@@ -43,3 +43,45 @@ Se estiver tudo ok! Bora pra frente!
 - precisa criar um script no package json, o nome pode ser qualquer um
 - rodar com `yarn start`
 
+### Fluxo de Requisições
+- middleware -> Interceptador
+- Intercepta uma requisição e faz alguma coisa
+- Middleare de log
+- Middleware por ser interceptador, ele pode bloquear o fluxo da requisição no express, ou não, basta configurar com next, passando como parametro, depois do req, res e chamando com return next().
+  ```
+const logMiddleware = (req, res, next) => {
+  console.log(
+    `HOST: ${req.headers.host} | URL: ${req.url} | METHOD: ${req.method}`
+  );
+
+  return next();
+};
+  ```
+
+- assim todas as rotas usam o middleware: app.use(logMiddleware); // passa como parametro o middleware
+- o next() faz com que a requisição não seja bloqueada no middleware, ele faz o que tem q ser feito e deixa seguir o fluxo da requisição e dar a resposta para o cliente se for o caso.
+- com o middleware é possível modificar e adicionar variáveis da requisição:
+```
+const logMiddleware = (req, res, next) => {
+  console.log(
+    `HOST: ${req.headers.host} | URL: ${req.url} | METHOD: ${req.method}`
+  );
+
+  // é possível alterar/adicionar variáveis na requisção.
+  req.appName = "Go Node";
+
+  return next();
+};
+
+```
+- é possivel adicionar e modificar na interceptação os itens da requisição que estào na variável req, e quem estiver acessando o middleware pode ter acesso as essas informações.
+
+- se quiser que o middleare interrompa o processamento do node, retira o next e devolve uma resposta para o cliente com res.send("alguma coisa"); mas dentro do middleware
+- Pode passar quantos middlware quiser como parametros, ex:
+```
+// Utilizando o middlewaresssss
+app.get("/", logMiddleware, logMiddleware, logMiddleware, logMiddleware (req, res) => {
+  return res.send(`Bem vindo ao ${req.appName}, ${req.query.name}`);
+});
+```
+  

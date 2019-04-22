@@ -2,10 +2,25 @@ const express = require("express");
 
 const app = express();
 
-// http://localhost:3005/?name=Thiagoo consigo pegar o parametro passado na URL
-app.get("/", (req, res) => {
-  console.log(`Bem vindo, ${req.query.name}`);
-  res.send(`Bem vindo, ${req.query.name}`);
+const logMiddleware = (req, res, next) => {
+  console.log(
+    `HOST: ${req.headers.host} | URL: ${req.url} | METHOD: ${req.method}`
+  );
+
+  // é possível alterar/adicionar variáveis na requisção.
+  req.appName = "Go Node";
+  // bloqueia o fluxo mas devolve a resposta ao usuário
+  // return res.send(`Bem vindo ao ${req.appName}, ${req.query.name}`);
+  // segue o fluxo
+  return next();
+};
+
+// assim todas as rotas usam o middleware
+// app.use(logMiddleware);
+
+// Utilizando o middleware
+app.get("/", logMiddleware, (req, res) => {
+  return res.send(`Bem vindo ao ${req.appName}, ${req.query.name}`);
 });
 
 app.get("/login", (req, res) => {
