@@ -100,4 +100,9 @@ app.get("/", logMiddleware, logMiddleware, logMiddleware, logMiddleware (req, re
 
 ### Configurando Nunjuncks
 - um rico e poderoso linguagem de template para javascript
-  
+
+### Renderizando dados na View
+- criamos um array e passamos para o list.njk como parametro do res.render()
+- criamos um novo template /new e sua respectiva rota
+- criamos um link de dentro da listagem de usuários para a rota /new
+ 
