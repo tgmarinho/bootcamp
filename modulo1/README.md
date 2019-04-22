@@ -143,5 +143,12 @@ app.get("/", logMiddleware, logMiddleware, logMiddleware, logMiddleware (req, re
 
 ### Configurando EditorConfig
 
-- instalar extensão no vscode
+- instalar extensão editorconfig no vscode
 - criar o arquivo .editorconfig e passar as configurações desejadas
+
+### Configurando ESLint
+
+- instalar extensão eslint e prettier no vscode
+- instalar a depedencia do projeto `yarn add eslint -D`
+- rodar o comando `yarn eslint --init` e passar as informações
+- como estou usando apenas o yarn, remover depois o package-lock.json e rodar o comando `yarn`
