@@ -97,3 +97,7 @@ app.get("/", logMiddleware, logMiddleware, logMiddleware, logMiddleware (req, re
 - Utilizamos o app.get para definir uma rota com o método GET;
 - Utilizamos o app.use para declarar middlewares que serão chamados em todas rotas;
 - O middleware geralmente é reconhecido por utilizar uma função que recebe os parâmetros (req, res)
+
+### Configurando Nunjuncks
+- um rico e poderoso linguagem de template para javascript
+  
