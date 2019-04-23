@@ -9,3 +9,11 @@
 
 Verificar os processos (do bd é database que configuramos acima)
 `docker ps`
+
+### Migrations
+
+- Para migrar
+`px sequelize db:migrate`
+
+- Para desfazer
+`px sequelize db:migrate:undo`
