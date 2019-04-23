@@ -6,6 +6,5 @@ module.exports = (sequelize, DataTypes) => {
     password_hash: DataTypes.STRING,
     provider: DataTypes.BOOLEAN
   })
-
   return User
 }

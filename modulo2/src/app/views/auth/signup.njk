@@ -1,5 +1,33 @@
-{% extends "_layouts/auth.njk" %}
+{% extends "_layouts/auth.njk" %} {% block body %}
+<form action="/signup" method="post">
+  <label for="avatar">
+    <img src="/images/avatar.svg" height="24" />
+  </label>
 
- {% block body %}
-  <h1>Hello Word</h1>
- {% endblock %}
+  <input id="avatar" name="avatar" type="file" />
+
+  <input type="text" name="name" placeholder="Nome Completo" />
+  <input type="email" name="email" placeholder="Seu e-mail" />
+  <input type="password" name="password" placeholder="Senha secreta" />
+
+  <label for="provider">
+    <input type="checkbox" id="provider" name="provider" value="1" />
+    Sou Cabelereiro
+  </label>
+
+  <button type="submit">Criar conta</button>
+
+  <a href="/">Já possuo conta</a>
+</form>
+
+<script type="text/javascript">
+  // pegando a foto enviada pelo usuário e colocando no preview
+  var avatarInput = document.getElementById('avatar');
+  var img = document.querySelector('label[for=avatar] img')
+
+  avatarInput.onchange = function(e) {
+    img.classList.add('preview')
+    img.src = URL.createObjectURL(e.target.files[0])
+  }
+</script>
+{% endblock %}
