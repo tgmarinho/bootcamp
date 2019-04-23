@@ -1,0 +1,8 @@
+root = true ## esse arquivo é o root de configuração do eslint
+
+[*] ## aplica para todos os arquivos
+indent_style = space ## identar com espaço
+indent_size = 2 ## identar apenas com dois espaços
+charset = utf-8
+trim_trailing_whitespace = true ## remover espaços em braco
+insert_final_newline = true ## inserir um espaço em branco no final da linha
