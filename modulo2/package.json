@@ -17,6 +17,7 @@
     "sequelize-cli": "^5.4.0"
   },
   "dependencies": {
+    "bcryptjs": "^2.4.3",
     "express": "^4.16.4",
     "nunjucks": "^3.2.0",
     "pg": "^7.10.0",
