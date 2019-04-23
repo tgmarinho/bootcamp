@@ -23,6 +23,7 @@ class App {
     })
 
     this.express.set('view engine', 'njk')
+    this.express.use(express.static(path.resolve(__dirname, 'public')))
   }
 
   routes () {
