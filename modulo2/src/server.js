@@ -1,4 +1,7 @@
 const express = require('express')
+const session = require('express-session')
+// melhor usar RedisConnect ou banco não relacional para salvar sessões
+const LockStore = require('connect-loki')(session)
 const nunjucks = require('nunjucks')
 const path = require('path')
 
@@ -13,6 +16,16 @@ class App {
 
   middlewares () {
     this.express.use(express.urlencoded({ extended: false }))
+    this.express.use(
+      session({
+        store: new LockStore({
+          path: path.resolve(__dirname, '..', 'tmp', 'session.db')
+        }),
+        secret: 'MyAppSecret',
+        resave: false,
+        saveUninitialized: true
+      })
+    )
   }
 
   views () {
