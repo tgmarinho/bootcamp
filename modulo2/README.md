@@ -14,8 +14,14 @@
 
 ## Migrations
 
+### Criei as migrations com o comando:
+- users: `npx sequelize migration:create --name=create-users`
+- appointments: `npx sequelize migration:create --name=create-appointments`
+
+### Quando criar um arquivo de migração, executar o comando
 - Para migrar:
 `px sequelize db:migrate`
 
+### Quando quiser desfazer uma migração
 - Para desfazer:
 `px sequelize db:migrate:undo`
