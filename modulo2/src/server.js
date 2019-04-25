@@ -19,7 +19,7 @@ class App {
     this.express.use(
       session({
         store: new LockStore({
-          path: path.resolve(__dirname, '..', 'tmp', 'session.db')
+          path: path.resolve(__dirname, '..', 'tmp', 'sessions.db')
         }),
         secret: 'MyAppSecret',
         resave: false,
