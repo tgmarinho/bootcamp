@@ -19,8 +19,9 @@ routes.post('/signup', upload.single('avatar'), UserController.store)
 // todas as rotas com app executam o middleware authMiddleware
 routes.use('/app', authMiddleware)
 
+routes.get('/app/logout', SessionController.destroy)
+
 routes.get('/app/dashboard', (req, res) => {
-  console.log(req.session.user)
   return res.render('dashboard')
 })
 
