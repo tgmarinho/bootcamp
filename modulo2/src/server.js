@@ -1,5 +1,6 @@
 const express = require('express')
 const session = require('express-session')
+const flash = require('connect-flash')
 // melhor usar RedisConnect ou banco não relacional para salvar sessões
 const LockStore = require('connect-loki')(session)
 const nunjucks = require('nunjucks')
@@ -16,6 +17,7 @@ class App {
 
   middlewares () {
     this.express.use(express.urlencoded({ extended: false }))
+    this.express.use(flash())
     this.express.use(
       session({
         name: 'root',

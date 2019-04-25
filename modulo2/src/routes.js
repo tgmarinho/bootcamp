@@ -10,6 +10,15 @@ const guestMiddleware = require('./app/middlewares/guest')
 const UserController = require('./app/controllers/UserController')
 const SessionController = require('./app/controllers/SessionController')
 
+const flashMiddleware = (req, res, next) => {
+  res.locals.flashSucess = req.flash('success')
+  res.locals.flashError = req.flash('error')
+
+  return next()
+}
+
+routes.use(flashMiddleware)
+
 routes.get('/', guestMiddleware, SessionController.create)
 routes.post('/signin', SessionController.store)
 
