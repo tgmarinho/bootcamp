@@ -1,6 +1,6 @@
 # MarketPlace - Módulo 3 - REST
 
-- Projeto utilizando Node, Express, Rest, MongoDB e Docker
+- Projeto utilizando Node, Express, Rest, MongoDB, Docker e Autenticação JWT
 
 ## Docker
 
