@@ -1,6 +1,6 @@
 const mongoose = require('mongoose')
 
-const Ad = new mongoose.Schema({
+const AdSchema = new mongoose.Schema({
   title: {
     type: String,
     required: true
@@ -24,4 +24,4 @@ const Ad = new mongoose.Schema({
   }
 })
 
-module.exports = new Ad()
+module.exports = mongoose.model('Ad', AdSchema)
