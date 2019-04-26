@@ -4,9 +4,9 @@
 
 ## Docker
 
-- Instalando a imagem do postgress e redirecionando a porta e rodando em background:
+- Instalando a imagem do mongodb e redirecionando a porta e rodando em background:
 
-`docker run --name database -p 5432:5432 -d -t kartoza/postgis`
+`docker run --name mongonode -p 27017:27017 -d -t mongo`
 
 - Verificar os processos (do bd é database que configuramos acima): `docker ps`
 
