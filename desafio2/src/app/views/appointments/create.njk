@@ -11,6 +11,9 @@
   </div>
 
   <form action="/app/appointments/new/{{ provider.id }}" method="POST">
+
+    {% include "_partials/flash.njk" %}
+
     <input type="text" class="flatpickr" placeholder="Escolha uma data" />
 
     <div id="hours"></div>

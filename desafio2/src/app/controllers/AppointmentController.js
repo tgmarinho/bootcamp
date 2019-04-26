@@ -10,6 +10,10 @@ class AppointmentController {
     const { id } = req.session.user
     const { provider } = req.params
     const { date } = req.body
+    if (!date) {
+      req.flash('error', 'Selecione um horário')
+      return res.redirect(`/app/appointments/new/${provider}`)
+    }
 
     await Appointment.create({
       user_id: id,
