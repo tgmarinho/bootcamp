@@ -307,3 +307,22 @@ ul.providers {
   font-size: 14px;
   color: #444;
 }
+
+.scheduled {
+  background: #9090ff;
+  text-decoration: none;
+  height: 40px;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  border-radius: 4px;
+  font-weight: bold;
+  font-size: 14px;
+  border: 0;
+  color: #fff;
+  margin-bottom: 5px;
+}
+
+.scheduled:hover {
+  background: #4040ff;
+}

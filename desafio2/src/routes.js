@@ -13,6 +13,7 @@ const DashboardController = require('./app/controllers/DashboardController')
 const FileController = require('./app/controllers/FileController')
 const AppointmentController = require('./app/controllers/AppointmentController')
 const AvailableController = require('./app/controllers/AvailableController')
+const DashboardBarberController = require('./app/controllers/DashboardBarberController')
 
 const flashMiddleware = (req, res, next) => {
   res.locals.flashSucess = req.flash('success')
@@ -22,8 +23,6 @@ const flashMiddleware = (req, res, next) => {
 }
 
 routes.use(flashMiddleware)
-
-// routes.use(errorMiddleware)
 
 routes.get('/files/:file', FileController.show)
 
@@ -43,6 +42,8 @@ routes.get('/app/dashboard', DashboardController.index)
 routes.get('/app/appointments/new/:provider', AppointmentController.create)
 routes.post('/app/appointments/new/:provider', AppointmentController.store)
 routes.get('/app/available/:provider', AvailableController.index)
+
+routes.get('/app/dashboardBarber', DashboardBarberController.index)
 
 routes.get('/*', (req, res) => {
   return res.render('404')
