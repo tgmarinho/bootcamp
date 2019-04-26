@@ -20,6 +20,7 @@
     "express": "^4.16.4",
     "jsonwebtoken": "^8.5.1",
     "mongoose": "^5.5.4",
+    "mongoose-paginate": "^5.0.3",
     "require-dir": "^1.2.0"
   }
 }
