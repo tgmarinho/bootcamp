@@ -11,3 +11,7 @@
 - Verificar os processos (do bd é database que configuramos acima): `docker ps`
 
 - Restart database: `docker start database`
+
+## Teste de Email
+
+- Serviço para teste de mail fake: [Mailtrap.IO](https://mailtrap.io/)
