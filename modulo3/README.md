@@ -8,9 +8,16 @@
 
 `docker run --name mongonode -p 27017:27017 -d -t mongo`
 
-- Verificar os processos (do bd é database que configuramos acima): `docker ps`
+- Instalando a imagem do redis e redirecionando a porta e rodando em background:
+
+`docker run --name noderedis -p 6379:6379 -d -t redis:alpine`
+
+- Verificar os processos: `docker ps`
 
 - Restart database: `docker start database`
+
+
+
 
 ## Teste de Email
 
