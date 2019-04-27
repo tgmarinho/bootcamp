@@ -18,10 +18,12 @@
   "dependencies": {
     "bcryptjs": "^2.4.3",
     "express": "^4.16.4",
+    "express-handlebars": "^3.0.2",
     "jsonwebtoken": "^8.5.1",
     "mongoose": "^5.5.4",
     "mongoose-paginate": "^5.0.3",
     "nodemailer": "^6.1.1",
+    "nodemailer-express-handlebars": "^3.0.0",
     "require-dir": "^1.2.0"
   }
 }
