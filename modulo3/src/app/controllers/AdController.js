@@ -18,7 +18,6 @@ class AdController {
       filters.title = new RegExp(req.query.title, 'i')
     }
 
-    console.log(filters)
 
     const ads = await Ad.paginate(filters, {
       page: req.query.page || 1,
@@ -36,7 +35,6 @@ class AdController {
 
   async store (req, res) {
     const ad = await Ad.create({ ...req.body, author: req.userId })
-    console.log(ad)
     return res.json(ad)
   }
   async update (req, res) {
