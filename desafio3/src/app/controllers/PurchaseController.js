@@ -17,33 +17,45 @@ class PurchaseController {
     const purchaseAd = await Ad.findById(ad).populate('author')
     const user = await User.findById(req.userId)
 
+    if (purchaseAd.purchasedBy) {
+      return res.status(400).json({ error: 'Ad already purchased' })
+    }
+
     Queue.create(PurchaseMail.key, {
       ad: purchaseAd,
       user,
       content
     }).save()
 
-    await Purchase.create({ ...req.body, author: req.userId })
+    await Purchase.create({ ...req.body, user: req.userId })
 
     return res.send()
   }
 
   async sold (req, res) {
     const { ad, sold } = req.body
-    console.log(req.params.id)
-    console.log(req.body)
+
+    const adAlreadyPuchased = await Purchase.findOne({ ad, sold: true })
+    if (adAlreadyPuchased) {
+      return res.status(400).json({ error: 'Ad already purchased' })
+    }
 
     const purchase = await Purchase.findOneAndUpdate(
-      req.params.id,
+      { _id: req.params.id },
       { sold },
       {
         new: true // retorna purchase atualizado
       }
     )
 
-    const adupdate = await Ad.findOneAndUpdate(ad, { purchaseBy: purchase.id })
-    console.log(adupdate)
-    return res.json(purchase)
+    if (purchase) {
+      await Ad.findOneAndUpdate(ad, {
+        purchasedBy: purchase._id
+      })
+      return res.json(purchase)
+    } else {
+      return res.status(400).json({ error: 'Purchase not exists' })
+    }
   }
 }
 

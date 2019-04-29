@@ -17,6 +17,9 @@
 - Restart MongoDB, Redis: `docker start mongonode noderedis mongoclient/mongoclient`
 - Run MongoClient: `docker run -d -p 3000:3000 mongoclient/mongoclient`
 
+docker exec -it mongonode \
+    mongo --host localhost
+
 - Consultas:
 
 `docker exec -it mongonode \

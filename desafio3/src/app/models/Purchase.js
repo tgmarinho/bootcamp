@@ -1,7 +1,7 @@
 const mongoose = require('mongoose')
 
 const PurchaseSchema = new mongoose.Schema({
-  author: {
+  user: {
     type: mongoose.Schema.Types.ObjectId,
     ref: 'User',
     required: true
@@ -17,6 +17,10 @@ const PurchaseSchema = new mongoose.Schema({
   },
   sold: {
     type: Boolean
+  },
+  createdAt: {
+    type: Date,
+    default: Date.now
   }
 })
 
