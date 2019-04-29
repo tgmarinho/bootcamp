@@ -14,9 +14,17 @@
 
 - Verificar os processos: `docker ps`
 
-- Restart database: `docker start database`
+- Restart MongoDB: `docker start mongonode`
 
+- Consultas:
 
+`docker exec -it mongonode \
+    mongo --host localhost`
+
+`show dbs`
+`use gonode03`
+`db.user.find()`
+`db.ad.find()`
 
 
 ## Teste de Email
