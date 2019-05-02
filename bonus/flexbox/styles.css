@@ -7,10 +7,6 @@ body,
 
 #app {
   display: flex;
-  flex-wrap: wrap;
-  align-items: center;
-  justify-content: space-between;
-  align-content: space-between;
 }
 
 .box {
@@ -18,4 +14,18 @@ body,
   width: 150px;
   background: #f00;
   margin: 5px;
+}
+
+.red {
+  order: 2;
+}
+
+.green {
+  background: #0f0;
+  order: 0;
+}
+
+.blue {
+  background: #00f;
+  order: 1;
 }
