@@ -1,0 +1,86 @@
+* {
+  margin: 0;
+  padding: 0;
+  box-sizing: border-box;
+  outline: 0;
+}
+
+html,
+body,
+#root {
+  height: 100%;
+}
+
+body {
+  font-family: sans-serif;
+  text-rendering: optimizeLegibility !important;
+  -webkit-font-smoothing: antialiased !important;
+  background: #e9ebee;
+  -webkit-font-smoothing: antialiased !important;
+}
+
+h1,
+h2,
+h3,
+h4 {
+  margin: 0;
+}
+
+header {
+  display: flex;
+  justify-content: center;
+  padding: 12px;
+  background: #4267b2;
+}
+
+header h1 {
+  color: #fff;
+  font-size: 14px;
+}
+
+.rootContainer {
+  display: flex;
+  justify-content: center;
+}
+
+.content {
+  width: 600px;
+  display: flex;
+  flex-direction: column;
+  background: #ffffff;
+  margin: 20px;
+  padding: 30px;
+  border: 1px solid #ccc;
+  border-radius: 5px;
+}
+
+.postHeader {
+  display: flex;
+  align-items: center;
+  border-bottom: 1px solid #eee;
+}
+
+.postHeader img {
+  margin: 10px;
+  width: 50px;
+  height: 50px;
+  border-radius: 50%;
+}
+
+.postHeader--author {
+  font-size: 12px;
+  font-weight: bold;
+  color: #666666;
+}
+.postHeader--time {
+  font-size: 10px;
+  color: #999999;
+}
+
+.postContainer {
+  margin-top: 10px;
+  font-size: 12px;
+  font-weight: 500;
+  line-height: 1.6;
+  color: #666666;
+}
