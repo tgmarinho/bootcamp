@@ -7,7 +7,9 @@ body,
 
 #app {
   display: flex;
-  flex-direction: column-reverse;
+  flex-direction: column;
+
+  justify-content: space-evenly;
 }
 
 .box {
