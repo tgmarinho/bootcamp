@@ -1,7 +1,12 @@
-import React from "react";
+import React, { Fragment } from "react";
+import styled from "styled-components";
 
-function App() {
-  return <div className="App">Hi</div>;
-}
+import GlobalStyle from "./styles/global";
+
+const App = () => (
+  <Fragment>
+    <GlobalStyle />
+  </Fragment>
+);
 
 export default App;
