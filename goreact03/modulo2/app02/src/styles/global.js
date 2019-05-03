@@ -12,5 +12,6 @@ body {
   background: #9b65e6;
   text-rendering: optimezeLegebility !important;
   -webkit-font-smoothing: analiased !important;
+  font-family: sans-serif;
 }
 `;
