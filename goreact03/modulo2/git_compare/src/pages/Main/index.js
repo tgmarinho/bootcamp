@@ -37,6 +37,15 @@ export default class Main extends Component {
     const { repositoryInput, repositories } = this.state;
 
     try {
+      const localRepositories = await this.getLocalRepositories();
+
+      if (
+        await localRepositories.some(
+          item => repositoryInput === `${item.owner.login}/${item.name}`
+        )
+      )
+        return;
+
       const { data: repository } = await api.get(`/repos/${repositoryInput}`);
 
       repository.last_commit = moment(repository.pushed_at).fromNow();
@@ -46,8 +55,6 @@ export default class Main extends Component {
         repositoryInput: "",
         repositories: [...repositories, repository]
       });
-
-      const localRepositories = await this.getLocalRepositories();
 
       await localStorage.setItem(
         REPOS_LOCAL_HISTORY,
