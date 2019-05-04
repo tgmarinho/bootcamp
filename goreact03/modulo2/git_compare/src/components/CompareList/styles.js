@@ -17,6 +17,21 @@ export const Repository = styled.div`
   display: flex;
   flex-direction: column;
 
+  nav {
+    display: flex;
+    justify-content: flex-end;
+    margin: 10px 10px;
+
+    i {
+      margin-left: 10px;
+      color: #ccc;
+
+      &:hover {
+        color: #999;
+      }
+    }
+  }
+
   header {
     padding: 30px;
     display: flex;
