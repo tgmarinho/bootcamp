@@ -1,6 +1,7 @@
 import React, { Component } from "react";
 import logo from "../../assets/logo.png";
 import api from "../../services/api";
+import moment from "moment";
 
 import { Container, Form } from "./styles";
 
@@ -16,9 +17,15 @@ export default class Main extends Component {
     e.preventDefault();
 
     try {
-      const response = await api.get(`/repos/${this.state.repositoryInput}`);
+      const { data: repository } = await api.get(
+        `/repos/${this.state.repositoryInput}`
+      );
+      // é uma boa prática formatar/processar fora do render dos components
+      // data tem que chegar no render já formatada
+      repository.lastCommit = moment(repository.pushed_at).fromNow();
+
       this.setState({
-        repositories: [...this.state.repositories, response.data]
+        repositories: [...this.state.repositories, repository]
       });
       this.setState({ repositoryInput: "" });
     } catch (error) {
