@@ -1,4 +1,11 @@
-const INITIAL_STATE = [];
+const INITIAL_STATE = [
+  {
+    id: Math.random(),
+    name: 'tgmarinho/bootcamp',
+    description: 'Treinamento de NODEJS',
+    url: 'https://github.com/tgmarinho/bootcamp',
+  },
+];
 
 export default function favorites(state = INITIAL_STATE, action) {
   switch (action.type) {
