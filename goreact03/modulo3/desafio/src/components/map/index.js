@@ -1,4 +1,4 @@
-import React, { Component, Fragment } from 'react';
+import React, { Component } from 'react';
 import MapGL, { Marker } from 'react-map-gl';
 
 import { Imagem } from './styles';
@@ -9,8 +9,8 @@ export default class Map extends Component {
     viewport: {
       width: window.innerWidth,
       height: window.innerHeight,
-      latitude: -23.5439948,
-      longitude: -46.6065452,
+      latitude: -22.2282566,
+      longitude: -54.8108955,
       zoom: 14,
     },
   };
@@ -34,11 +34,18 @@ export default class Map extends Component {
     });
   };
 
-  handleMapClick(e) {
+  handleMapClick = (e) => {
     const [latitude, longitude] = e.lngLat;
+    this.setState({
+      viewport: {
+        ...this.state.viewport,
+        latitude,
+        longitude,
+      },
+    });
 
     alert(`Latitude: ${latitude} \nLongitude: ${longitude}`);
-  }
+  };
 
   render() {
     return (
@@ -50,8 +57,8 @@ export default class Map extends Component {
         onViewportChange={viewport => this.setState({ viewport })}
       >
         <Marker
-          latitude={-23.5439948}
-          longitude={-46.6065452}
+          latitude={this.state.viewport.latitude}
+          longitude={this.state.viewport.longitude}
           onClick={this.handleMapClick}
           captureClick
         >
