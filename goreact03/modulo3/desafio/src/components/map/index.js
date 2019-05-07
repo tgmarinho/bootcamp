@@ -1,10 +1,17 @@
-import React, { Component } from 'react';
+import React, { Component, Fragment } from 'react';
 import MapGL, { Marker } from 'react-map-gl';
+import { connect } from 'react-redux';
+import { bindActionCreators } from 'redux';
+import { ModalProvider } from 'styled-react-modal';
+import { Creators as ModalActions } from '../../store/ducks/modal';
+
+import { FadingBackground } from '../addUser/styles';
+import AddUser from '../addUser';
 
 import { Imagem } from './styles';
 // import 'mapbox-gl/dist/mapbox-gl.css';
 
-export default class Map extends Component {
+class Map extends Component {
   state = {
     viewport: {
       width: window.innerWidth,
@@ -36,35 +43,43 @@ export default class Map extends Component {
 
   handleMapClick = (e) => {
     const [latitude, longitude] = e.lngLat;
-    this.setState({
-      viewport: {
-        ...this.state.viewport,
-        latitude,
-        longitude,
-      },
-    });
-
-    alert(`Latitude: ${latitude} \nLongitude: ${longitude}`);
+    console.log(this.props);
+    this.props.toggleModal();
   };
 
   render() {
     return (
-      <MapGL
-        {...this.state.viewport}
-        onClick={this.handleMapClick}
-        mapStyle="mapbox://styles/mapbox/basic-v9"
-        mapboxApiAccessToken="pk.eyJ1IjoiZGllZ28zZyIsImEiOiJjamh0aHc4em0wZHdvM2tyc3hqbzNvanhrIn0.3HWnXHy_RCi35opzKo8sHQ"
-        onViewportChange={viewport => this.setState({ viewport })}
-      >
-        <Marker
-          latitude={this.state.viewport.latitude}
-          longitude={this.state.viewport.longitude}
+      <Fragment>
+        <MapGL
+          {...this.state.viewport}
           onClick={this.handleMapClick}
-          captureClick
+          mapStyle="mapbox://styles/mapbox/basic-v9"
+          mapboxApiAccessToken="pk.eyJ1IjoiZGllZ28zZyIsImEiOiJjamh0aHc4em0wZHdvM2tyc3hqbzNvanhrIn0.3HWnXHy_RCi35opzKo8sHQ"
+          onViewportChange={viewport => this.setState({ viewport })}
         >
-          <Imagem src="https://avatars2.githubusercontent.com/u/2254731?v=4" />
-        </Marker>
-      </MapGL>
+          <Marker
+            latitude={this.state.viewport.latitude}
+            longitude={this.state.viewport.longitude}
+            onClick={this.handleMapClick}
+            captureClick
+          >
+            <Imagem src="https://avatars2.githubusercontent.com/u/2254731?v=4" />
+          </Marker>
+        </MapGL>
+
+        <ModalProvider backgroundComponent={FadingBackground}>
+          <AddUser />
+        </ModalProvider>
+      </Fragment>
     );
   }
 }
+
+const mapStateToProps = state => ({ isOpen: state.modal.isOpen });
+
+const mapDispatchToProps = dispatch => bindActionCreators(ModalActions, dispatch);
+
+export default connect(
+  mapStateToProps,
+  mapDispatchToProps,
+)(Map);
