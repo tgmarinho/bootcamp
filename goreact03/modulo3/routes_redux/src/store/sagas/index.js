@@ -1,5 +1,5 @@
 import { all, takeLatest } from 'redux-saga/effects';
-
+import { Types as FavoriteTypes } from '../ducks/favorites';
 import { addFavorite } from './favorites';
 
 // all é um metodo para ligar como varios sagas (igual ao combineReducers)
@@ -10,5 +10,5 @@ import { addFavorite } from './favorites';
 
 // takeLastest pega a última requisição que usuário fez, evita o problema de vários cliques
 export default function* rootSaga() {
-  yield all([takeLatest('ADD_FAVORITE_REQUEST', addFavorite)]);
+  yield all([takeLatest(FavoriteTypes.ADD_REQUEST, addFavorite)]);
 }

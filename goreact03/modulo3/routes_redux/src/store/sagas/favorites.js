@@ -1,7 +1,7 @@
 import { call, put } from 'redux-saga/effects';
 import api from '../../services/api';
 
-import { addFavoriteSuccess, addFavoriteFailure } from '../actions/favorites';
+import { Creators as FavoriteActions } from '../ducks/favorites';
 
 // call é usado quando a chamada retorna uma promise.
 export function* addFavorite(action) {
@@ -16,8 +16,8 @@ export function* addFavorite(action) {
     };
 
     // envia para o reducer essa chamada da action
-    yield put(addFavoriteSuccess(repositoryData));
+    yield put(FavoriteActions.addFavoriteSuccess(repositoryData));
   } catch (error) {
-    yield put(addFavoriteFailure('Erro ao adicionar repositório'));
+    yield put(FavoriteActions.addFavoriteFailure('Erro ao adicionar repositório'));
   }
 }
