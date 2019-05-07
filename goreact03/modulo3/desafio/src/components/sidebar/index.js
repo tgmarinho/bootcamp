@@ -1,8 +1,10 @@
 import React from 'react';
 import { connect } from 'react-redux';
+import { bindActionCreators } from 'redux';
 import { Container } from './styles';
+import { Creators as UserActions } from '../../store/ducks/users';
 
-const SideBar = ({ users }) => (
+const SideBar = ({ users, removeUser }) => (
   <Container>
     <ul>
       {users
@@ -16,7 +18,7 @@ const SideBar = ({ users }) => (
               </div>
             </div>
             <div>
-              <i className="fa fa-times-circle remove" />
+              <i className="fa fa-times-circle remove" onClick={() => removeUser(user.id)} />
               <i className="fa fa-chevron-right show" />
             </div>
           </li>
@@ -29,4 +31,9 @@ const mapStateToProps = ({ users }) => ({
   users,
 });
 
-export default connect(mapStateToProps)(SideBar);
+const mapDispatchToProps = dispatch => bindActionCreators(UserActions, dispatch);
+
+export default connect(
+  mapStateToProps,
+  mapDispatchToProps,
+)(SideBar);
