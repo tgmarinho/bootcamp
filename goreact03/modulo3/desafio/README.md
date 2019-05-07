@@ -12,8 +12,8 @@ Neste desafio você vai construir uma aplicação utilizando a biblioteca Rea
 
 ## Utilize o seguinte layout na aplicação:
 
-![Listagem]([/assets/listagem.png](https://raw.githubusercontent.com/Rocketseat/bootcamp-reactjs-desafio-03/master/assets/new.png)
-![New](https://github.com/Rocketseat/bootcamp-reactjs-desafio-03/blob/master/assets/new.png)
+![Listagem](https://raw.githubusercontent.com/Rocketseat/bootcamp-reactjs-desafio-03/master/assets/listagem.png)
+![New](https://raw.githubusercontent.com/Rocketseat/bootcamp-reactjs-desafio-03/master/assets/new.png)
 
 Veja que na esquerda temos uma lista dos usuários cadastrados enquanto que no mapa temos os avatares do usuário indicando sua posição no mapa.
 
