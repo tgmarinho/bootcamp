@@ -14,12 +14,15 @@ export const Types = {
 const INITIAL_STATE = {
   loading: false,
   data: [
-    {
-      id: '123',
-      name: 'Diego Rocket',
-      avatar: 'https://avatars2.githubusercontent.com/u/2254731?v=4',
-      login: '@diegogithub',
-    },
+    // {
+    //   id: 380327,
+    //   login: 'tgmarinho',
+    //   name: 'Thiago Marinho',
+    //   avatar: 'https://avatars2.githubusercontent.com/u/380327?v=4',
+    //   url: 'https://api.github.com/users/tgmarinho',
+    //   latitude: '-54.80864244443114',
+    //   longitude: '-22.223568847362912',
+    // },
   ],
   error: null,
 };
@@ -27,7 +30,19 @@ const INITIAL_STATE = {
 export default function users(state = INITIAL_STATE, action) {
   switch (action.type) {
     case Types.ADD_REQUEST:
-      return state;
+      return { ...state, loading: true };
+
+    case Types.ADD_SUCCESS:
+      return {
+        ...state,
+        loading: false,
+        error: null,
+        data: [...state.data, action.payload.data],
+      };
+
+    case Types.ADD_FAILURE:
+      return { ...state, loading: false, error: action.payload.error };
+
     case Types.REMOVE_USER:
       return { ...state, data: [...state.data.filter(user => user.id !== action.payload.id)] };
 
@@ -44,5 +59,17 @@ export const Creators = {
   removeUser: id => ({
     type: Types.REMOVE_USER,
     payload: { id },
+  }),
+  addUserRequest: user => ({
+    type: Types.ADD_REQUEST,
+    payload: { user },
+  }),
+  addUserSuccess: data => ({
+    type: Types.ADD_SUCCESS,
+    payload: { data },
+  }),
+  addUserFailure: error => ({
+    type: Types.ADD_FAILURE,
+    payload: { error },
   }),
 };

@@ -4,6 +4,8 @@ import { connect } from 'react-redux';
 import { bindActionCreators } from 'redux';
 import { ModalProvider } from 'styled-react-modal';
 import { Creators as ModalActions } from '../../store/ducks/modal';
+import { Creators as UserActions } from '../../store/ducks/users';
+import { Creators as SearchActions } from '../../store/ducks/searchUser';
 
 import { FadingBackground } from '../addUser/styles';
 import AddUser from '../addUser';
@@ -18,7 +20,7 @@ class Map extends Component {
       height: window.innerHeight,
       latitude: -22.2282566,
       longitude: -54.8108955,
-      zoom: 14,
+      zoom: 15,
     },
   };
 
@@ -42,29 +44,32 @@ class Map extends Component {
   };
 
   handleMapClick = (e) => {
-    const [latitude, longitude] = e.lngLat;
-    console.log(this.props);
+    const [longitude, latitude] = e.lngLat;
+    this.props.onSearch({ longitude, latitude });
     this.props.toggleModal();
   };
 
   render() {
+    const { viewport: viewportState } = this.state;
+    const { users } = this.props;
+    console.log(users);
+
     return (
       <Fragment>
         <MapGL
-          {...this.state.viewport}
+          {...viewportState}
           onClick={this.handleMapClick}
           mapStyle="mapbox://styles/mapbox/basic-v9"
-          mapboxApiAccessToken="pk.eyJ1IjoiZGllZ28zZyIsImEiOiJjamh0aHc4em0wZHdvM2tyc3hqbzNvanhrIn0.3HWnXHy_RCi35opzKo8sHQ"
+          mapboxApiAccessToken={process.env.REACT_APP_MAPBOX_ACCESS_TOKEN}
           onViewportChange={viewport => this.setState({ viewport })}
         >
-          <Marker
-            latitude={this.state.viewport.latitude}
-            longitude={this.state.viewport.longitude}
-            onClick={this.handleMapClick}
-            captureClick
-          >
-            <Imagem src="https://avatars2.githubusercontent.com/u/2254731?v=4" />
-          </Marker>
+          {users
+            && !!users.length
+            && users.map(user => (
+              <Marker key={user.id} latitude={user.latitude} longitude={user.longitude}>
+                <Imagem src={user.avatar} alt={`${user.name} Avatar`} />
+              </Marker>
+            ))}
         </MapGL>
 
         <ModalProvider backgroundComponent={FadingBackground}>
@@ -75,9 +80,9 @@ class Map extends Component {
   }
 }
 
-const mapStateToProps = state => ({ isOpen: state.modal.isOpen });
+const mapStateToProps = state => ({ isOpen: state.modal.isOpen, users: state.users.data });
 
-const mapDispatchToProps = dispatch => bindActionCreators(ModalActions, dispatch);
+const mapDispatchToProps = dispatch => bindActionCreators({ ...ModalActions, ...UserActions, ...SearchActions }, dispatch);
 
 export default connect(
   mapStateToProps,

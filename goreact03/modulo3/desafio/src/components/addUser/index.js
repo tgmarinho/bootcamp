@@ -2,16 +2,25 @@ import React, { useState } from 'react';
 import { connect } from 'react-redux';
 import { bindActionCreators } from 'redux';
 import { Creators as ModalActions } from '../../store/ducks/modal';
+import { Creators as UserActions } from '../../store/ducks/users';
 import { StyledModal, Form } from './styles';
 
-const mapToProps = state => ({ isOpen: state.modal.isOpen });
-const mapDispatchToProps = dispatch => bindActionCreators(ModalActions, dispatch);
+const mapToProps = state => ({
+  isOpen: state.modal.isOpen,
+  coordenadas: state.searchUser,
+});
+const mapDispatchToProps = dispatch => bindActionCreators({ ...ModalActions, ...UserActions }, dispatch);
 
 export default connect(
   mapToProps,
   mapDispatchToProps,
-)(({ isOpen, toggleModal }) => {
+)((props) => {
   const [opacity, setOpacity] = useState(0);
+  const [user, setUser] = useState('');
+
+  const {
+    isOpen, toggleModal, coordenadas, addUserRequest,
+  } = props;
 
   const afterOpen = () => {
     setTimeout(() => {
@@ -26,7 +35,14 @@ export default connect(
 
   const handleToogle = (e) => {
     e.preventDefault();
+
     toggleModal();
+  };
+
+  const handleSubmit = (e) => {
+    e.preventDefault();
+    setUser('');
+    addUserRequest({ ...coordenadas, user });
   };
 
   return (
@@ -40,9 +56,14 @@ export default connect(
         opacity={opacity}
         backgroundProps={{ opacity }}
       >
-        <Form>
+        <Form onSubmit={handleSubmit}>
           <h3>Adicionar novo usuário</h3>
-          <input type="text" placeholder="Usuário do Github" />
+          <input
+            type="text"
+            placeholder="Usuário do Github"
+            value={user}
+            onChange={e => setUser(e.target.value)}
+          />
           <div>
             <button type="submit" className="cancel" onClick={handleToogle}>
               Cancelar
