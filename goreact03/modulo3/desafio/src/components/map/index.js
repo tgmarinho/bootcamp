@@ -52,7 +52,6 @@ class Map extends Component {
   render() {
     const { viewport: viewportState } = this.state;
     const { users } = this.props;
-    console.log(users);
 
     return (
       <Fragment>

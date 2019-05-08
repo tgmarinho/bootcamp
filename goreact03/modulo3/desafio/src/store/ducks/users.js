@@ -13,17 +13,7 @@ export const Types = {
  */
 const INITIAL_STATE = {
   loading: false,
-  data: [
-    // {
-    //   id: 380327,
-    //   login: 'tgmarinho',
-    //   name: 'Thiago Marinho',
-    //   avatar: 'https://avatars2.githubusercontent.com/u/380327?v=4',
-    //   url: 'https://api.github.com/users/tgmarinho',
-    //   latitude: '-54.80864244443114',
-    //   longitude: '-22.223568847362912',
-    // },
-  ],
+  data: [],
   error: null,
 };
 

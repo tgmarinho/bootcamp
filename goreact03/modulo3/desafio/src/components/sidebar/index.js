@@ -4,12 +4,10 @@ import { bindActionCreators } from 'redux';
 import { Container } from './styles';
 import { Creators as UserActions } from '../../store/ducks/users';
 
-const SideBar = ({ users, removeUser }) => {
-  console.log(users);
-  return (
-    <Container>
-      <ul>
-        {users
+const SideBar = ({ users, removeUser }) => (
+  <Container>
+    <ul>
+      {users
           && users.data.map(user => (
             <li key={user.id}>
               <div>
@@ -25,10 +23,9 @@ const SideBar = ({ users, removeUser }) => {
               </div>
             </li>
           ))}
-      </ul>
-    </Container>
-  );
-};
+    </ul>
+  </Container>
+);
 
 const mapStateToProps = ({ users }) => ({
   users,

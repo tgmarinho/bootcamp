@@ -19,7 +19,7 @@ export default connect(
   const [user, setUser] = useState('');
 
   const {
-    isOpen, toggleModal, coordenadas, addUserRequest,
+    isOpen, toggleModal, coordenadas, addUserRequest, loading,
   } = props;
 
   const afterOpen = () => {
@@ -41,8 +41,12 @@ export default connect(
 
   const handleSubmit = (e) => {
     e.preventDefault();
-    setUser('');
+
+    if (loading) return;
+
+    if (!user) return;
     addUserRequest({ ...coordenadas, user });
+    setUser('');
   };
 
   return (
@@ -69,7 +73,7 @@ export default connect(
               Cancelar
             </button>
             <button type="submit" className="save">
-              Salvar
+              {loading ? <i className="fa fa-spinner fa-pulse" /> : 'OK'}
             </button>
           </div>
         </Form>
