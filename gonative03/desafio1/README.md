@@ -28,6 +28,6 @@ Nesse projeto você desenvolverá um feed de posts estilo Facebook. Crie um layo
 
 ## Resultado Final
 
-![App](/assets/resultado_final.png)
+![App](https://raw.githubusercontent.com/tgmarinho/bootcamp/master/gonative03/desafio1/assets/resultado_final.png?token=AAC43J3KHK7OZUYTGJECOOS42RGJY)
 
 “Sucesso não é o resultado de um jogo, mas o destino de uma jornada”!
