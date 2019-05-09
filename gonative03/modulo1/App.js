@@ -1,22 +1,20 @@
-import './config/ReactotronConfig';
-import './config/DevToolsConfig';
-import React, { Component } from 'react';
-import {
-  StyleSheet, Text, View, Button,
-} from 'react-native';
-import Todo from './components/Todo';
+import "~/config/ReactotronConfig";
+import "~/config/DevToolsConfig";
+import React, { Component } from "react";
+import { StyleSheet, View } from "react-native";
+import Todo from "~/components/Todo";
 
-console.tron.log('hello world');
+console.tron.log("hello world");
 
 export default class App extends Component {
   state = {
-    usuario: 'thiago',
-    todos: [{ id: 0, text: 'Fazer café' }, { id: 1, text: 'Estudar gonative' }],
+    usuario: "thiago",
+    todos: [{ id: 0, text: "Fazer café" }, { id: 1, text: "Estudar gonative" }]
   };
 
   addTodo = () => {
     this.setState({
-      todos: [...this.state.todos, { id: Math.random(), text: 'Estudar JS' }],
+      todos: [...this.state.todos, { id: Math.random(), text: "Estudar JS" }]
     });
   };
 
@@ -58,23 +56,23 @@ export default class App extends Component {
 const styles = StyleSheet.create({
   container: {
     flex: 1, // ocupar todo espaço em tela possível
-    backgroundColor: '#f5f5f5',
-    flexDirection: 'column',
-    flexWrap: 'wrap',
-    justifyContent: 'center',
-    alignItems: 'center',
+    backgroundColor: "#f5f5f5",
+    flexDirection: "column",
+    flexWrap: "wrap",
+    justifyContent: "center",
+    alignItems: "center"
   },
   box: {
     width: 80,
     height: 80,
     margin: 10,
-    backgroundColor: '#F00',
-    color: '#FFF', // Não tem herança,  o text de dentro do view não consegue setar branco no Text
+    backgroundColor: "#F00",
+    color: "#FFF", // Não tem herança,  o text de dentro do view não consegue setar branco no Text
     // paddingHorizontal: 100
     // marginVertical: 100
-    transform: [{ rotateZ: '20deg' }],
+    transform: [{ rotateZ: "20deg" }]
   },
   boxText: {
-    color: '#FFF',
-  },
+    color: "#FFF"
+  }
 });
