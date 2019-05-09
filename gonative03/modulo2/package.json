@@ -12,6 +12,8 @@
     "prop-types": "^15.7.2",
     "react": "16.8.3",
     "react-native": "0.59.8",
+    "react-native-gesture-handler": "^1.2.1",
+    "react-navigation": "^3.9.1",
     "reactotron-react-native": "^3.5.0"
   },
   "devDependencies": {
