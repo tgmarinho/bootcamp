@@ -1,9 +1,9 @@
-import React from "react";
-import { View } from "react-native";
+import React from 'react';
+import { View } from 'react-native';
 
-import "~/config/ReactotronConfig";
+import '~/config/ReactotronConfig';
 
-console.tron.log("its working");
+console.tron.log('its working');
 
 const App = () => <View />;
 
