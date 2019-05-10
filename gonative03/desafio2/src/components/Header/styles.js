@@ -14,7 +14,7 @@ const styles = StyleSheet.create({
     alignItems: 'center',
     paddingHorizontal: metrics.basePadding,
   },
-  titile: {
+  title: {
     fontSize: 16,
     fontWeight: 'bold',
     color: colors.darker,
