@@ -7,5 +7,6 @@ if (__DEV__) {
 
   tron.clear();
 
+  /* eslint-disable no-console */
   console.tron = tron;
 }
