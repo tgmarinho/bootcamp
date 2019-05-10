@@ -1,8 +1,6 @@
 import React, { Component } from 'react';
 import PropTypes from 'prop-types';
-import {
-  View, Text, ActivityIndicator, FlatList,
-} from 'react-native';
+import { View, ActivityIndicator, FlatList } from 'react-native';
 import AsyncStorage from '@react-native-community/async-storage';
 import Icon from 'react-native-vector-icons/FontAwesome';
 import api from '~/services/api';
