@@ -12,7 +12,7 @@ const Header = ({ title, navigation }) => (
   <View style={styles.container}>
     <StatusBar barStyle="dark-content" />
     <TouchableOpacity onPress={() => navigation.navigate('Welcome')}>
-      <Icon name="exchange" sinze={16} style={styles.icon} />
+      <Icon name="chevron-left" sinze={16} style={styles.icon} />
     </TouchableOpacity>
     <Text style={styles.title}>{title}</Text>
     <View style={styles.left} />
