@@ -1,5 +1,5 @@
 import React, { Component } from 'react';
-
+import PropTypes from 'prop-types';
 import {
   View,
   Text,
@@ -16,6 +16,12 @@ import api from '~/services/api';
 import styles from './styles';
 
 class Welcome extends Component {
+  static propTypes = {
+    navigation: PropTypes.shape({
+      navigate: PropTypes.func,
+    }).isRequired,
+  };
+
   state = {
     username: '',
     loading: false,
