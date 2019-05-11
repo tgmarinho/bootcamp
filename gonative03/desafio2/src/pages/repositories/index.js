@@ -23,10 +23,12 @@ export default class Repositories extends Component {
 
   loadRepositories = async () => {
     try {
-      const dataStorage = await AsyncStorage.getItem('@GitIssues:respositories');
-      const data = JSON.parse(dataStorage);
-      console.tron.log(data);
-      this.setState({ data });
+      const dataStorage = await AsyncStorage.getItem('@GitIssuess:respositories');
+      if (!dataStorage) {
+        const data = JSON.parse(dataStorage);
+        console.tron.log(data);
+        this.setState({ data });
+      }
     } catch (error) {
       console.tron.log('Ocorreu um erro');
     }
@@ -51,7 +53,7 @@ export default class Repositories extends Component {
         };
 
         await AsyncStorage.setItem(
-          '@GitIssues:respositories',
+          '@GitIssuess:respositories',
           JSON.stringify([...data, newValues]),
         );
 
