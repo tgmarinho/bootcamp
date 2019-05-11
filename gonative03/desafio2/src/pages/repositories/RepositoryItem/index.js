@@ -21,7 +21,11 @@ const RepositoryItem = ({ repository, navigation }) => (
 
     <View styles={styles.icon}>
       <TouchableOpacity
-        onPress={() => navigation.navigate('Issues', { repository: repository.url })}
+        onPress={() => navigation.navigate('Issues', {
+          repository: repository.full_name,
+          name: repository.name,
+        })
+        }
       >
         <Icon name="chevron-right" size={16} style={styles.icon} />
       </TouchableOpacity>

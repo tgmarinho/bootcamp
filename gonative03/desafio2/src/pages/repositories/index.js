@@ -47,7 +47,7 @@ export default class Repositories extends Component {
           name: response.data.owner.login,
           organization: response.data.organization.login || 'Não tem',
           avatar_url: response.data.owner.avatar_url || '',
-          url: response.data.url,
+          full_name: response.data.full_name,
         };
 
         await AsyncStorage.setItem(
@@ -61,7 +61,7 @@ export default class Repositories extends Component {
         });
       }
     } catch (error) {
-      console.tron.log('Ocorreu um erro');
+      console.tron.log('Ocorreu um erro', error);
     } finally {
       this.setState({ loading: false, refreshing: false });
     }
@@ -76,7 +76,7 @@ export default class Repositories extends Component {
 
     return (
       <View style={styles.container}>
-        <Header title="GitIssues" navigator={{ navigation: 'welcome' }} />
+        <Header title="GitIssues" />
         <View style={styles.boxInput}>
           <TextInput
             style={styles.input}

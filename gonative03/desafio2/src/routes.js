@@ -5,7 +5,7 @@ import Issues from '~/pages/issues';
 
 const Routes = createAppContainer(
   createSwitchNavigator({
-    // Repositories,
+    Repositories,
     Issues,
   }),
 );

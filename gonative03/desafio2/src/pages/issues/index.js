@@ -4,66 +4,55 @@ import {
 } from 'react-native';
 import Header from '~/components/Header';
 import api from '~/services/api';
-import AsyncStorage from '@react-native-community/async-storage';
 import IssueItem from './IssueItem';
 import styles from './styles';
 
-export default class Issues extends Component {
+class Issues extends Component {
   state = {
-    repository: '',
     loading: false,
     data: [],
     refreshing: false,
   };
 
   async componentDidMount() {
-    this.loadIssues();
-  }
-
-  loadIssues = async () => {
     try {
-      const dataStorage = await AsyncStorage.getItem('@GitIssues:respositories');
-      const data = JSON.parse(dataStorage);
-      console.tron.log(data);
+      const { navigation } = this.props;
+      const repository = navigation.getParam('full_name');
+
+      console.tron.log(repository);
+      const response = await api.get(`/repos/${repository}/issues`);
+
+      const data = {
+        id: response.data.id,
+        title: response.data.title,
+        avatar: response.data.user.avatar_url,
+        name: response.data.user.login,
+        state: response.data.state,
+        url: response.data.url,
+      };
+
       this.setState({ data });
     } catch (error) {
-      console.tron.log('Ocorreu um erro');
+      console.tron.log('ocorreu um erro');
     }
+  }
+
+  filterByAll = () => {
+    this.setState({
+      data: this.state.data.filter(issue => issue.state === 'all'),
+    });
   };
 
-  addRepository = async () => {
-    try {
-      const { repository, data } = this.state;
+  filterByOpen = () => {
+    this.setState({
+      data: this.state.data.filter(issue => issue.state === 'open'),
+    });
+  };
 
-      this.setState({ loading: true, refreshing: false });
-
-      const response = await api.get(`/repos/${repository}`);
-
-      if (!data.some(repo => repo.id === response.data.id)) {
-        const newValues = {
-          id: response.data.id,
-          login: response.data.name,
-          name: response.data.owner.login,
-          organization: response.data.organization.login || 'Não tem',
-          avatar_url: response.data.owner.avatar_url || '',
-          url: response.data.url,
-        };
-
-        await AsyncStorage.setItem(
-          '@GitIssues:respositories',
-          JSON.stringify([...data, newValues]),
-        );
-
-        this.setState({
-          data: [...data, newValues],
-          repository: '',
-        });
-      }
-    } catch (error) {
-      console.tron.log('Ocorreu um erro');
-    } finally {
-      this.setState({ loading: false, refreshing: false });
-    }
+  filterByClosed = () => {
+    this.setState({
+      data: this.state.data.filter(issue => issue.state === 'closed'),
+    });
   };
 
   renderListItem = ({ item }) => <IssueItem repository={item} />;
@@ -75,15 +64,15 @@ export default class Issues extends Component {
 
     return (
       <View style={styles.container}>
-        <Header title="Issues" navigator={{ navigation: 'welcome' }} />
+        <Header title="Issues" navigator={{ navigation: 'Repositories' }} />
         <View style={styles.boxButtons}>
-          <TouchableOpacity style={styles.button} onPress={this.addRepository}>
+          <TouchableOpacity style={styles.button} onPress={this.filterByAll}>
             <Text style={styles.buttonTitle}>Todas</Text>
           </TouchableOpacity>
-          <TouchableOpacity style={styles.button} onPress={this.addRepository}>
+          <TouchableOpacity style={styles.button} onPress={this.filterByOpen}>
             <Text style={styles.buttonTitle}>Abertas</Text>
           </TouchableOpacity>
-          <TouchableOpacity style={styles.button} onPress={this.addRepository}>
+          <TouchableOpacity style={styles.button} onPress={this.filterByClosed}>
             <Text style={styles.buttonTitle}>Fechadas</Text>
           </TouchableOpacity>
         </View>
@@ -92,10 +81,11 @@ export default class Issues extends Component {
           data={data}
           keyExtractor={item => String(item.id)}
           renderItem={this.renderListItem}
-          onRefresh={this.loadIssues}
           refreshing={refreshing}
         />
       </View>
     );
   }
 }
+
+export default Issues;

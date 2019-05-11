@@ -11,9 +11,14 @@ import styles from './styles';
 const Header = ({ title, navigation }) => (
   <View style={styles.container}>
     <StatusBar barStyle="dark-content" />
-    <TouchableOpacity onPress={() => navigation.navigate('Welcome')}>
-      <Icon name="chevron-left" sinze={16} style={styles.icon} />
-    </TouchableOpacity>
+    {!navigation ? (
+      <TouchableOpacity onPress={() => navigation.navigate.goBack()}>
+        <Icon name="chevron-left" sinze={16} style={styles.icon} />
+      </TouchableOpacity>
+    ) : (
+      <View style={styles.left} />
+    )}
+
     <Text style={styles.title}>{title}</Text>
     <View style={styles.left} />
   </View>
