@@ -47,6 +47,7 @@ export default class Repositories extends Component {
           name: response.data.owner.login,
           organization: response.data.organization.login || 'Não tem',
           avatar_url: response.data.owner.avatar_url || '',
+          url: response.data.url,
         };
 
         await AsyncStorage.setItem(

@@ -8,7 +8,7 @@ import Icon from 'react-native-vector-icons/FontAwesome';
 
 import styles from './styles';
 
-const RepositoryItem = ({ repository, navigation }) => (
+const IssueItem = ({ repository, navigation }) => (
   <View style={styles.container}>
     <View style={styles.boxContainer}>
       <Image style={styles.avatar} source={{ uri: repository.avatar_url }} />
@@ -29,4 +29,4 @@ const RepositoryItem = ({ repository, navigation }) => (
   </View>
 );
 
-export default withNavigation(RepositoryItem);
+export default withNavigation(IssueItem);
