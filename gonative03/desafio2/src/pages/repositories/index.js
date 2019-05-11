@@ -1,13 +1,11 @@
 import React, { Component } from 'react';
 import {
-  View,
-  FlatList,
-  TextInput,
-  ActivityIndicator,
-  TouchableOpacity,
+  View, FlatList, TextInput, ActivityIndicator, TouchableOpacity,
 } from 'react-native';
 import Header from '~/components/Header';
 import Icon from 'react-native-vector-icons/FontAwesome';
+import api from '~/services/api';
+import AsyncStorage from '@react-native-community/async-storage';
 import RepositoryItem from './RepositoryItem';
 import styles from './styles';
 
@@ -15,38 +13,58 @@ export default class Repositories extends Component {
   state = {
     repository: '',
     loading: false,
-    data: [
-      {
-        id: 80149262,
-        name: 'Bla Bla',
-        owner: {
-          login: 'react-navigation',
-          avatar_url: 'https://avatars2.githubusercontent.com/u/29647600?v=4',
-        },
-      },
-      {
-        id: 80149263,
-        name: 'Bla Bla',
-        owner: {
-          login: 'react-navigation',
-          avatar_url: 'https://avatars2.githubusercontent.com/u/29647600?v=4',
-        },
-      },
-      {
-        id: 80149265,
-        name: 'Bla Bla',
-        owner: {
-          login: 'react-navigation',
-          avatar_url: 'https://avatars2.githubusercontent.com/u/29647600?v=4',
-        },
-      },
-    ],
+    data: [],
     refreshing: false,
   };
 
-  loadRepositories = () => {};
+  async componentDidMount() {
+    this.loadRepositories();
+  }
 
-  addRepository = () => {};
+  loadRepositories = async () => {
+    try {
+      const dataStorage = await AsyncStorage.getItem('@GitIssues:respositories');
+      const data = JSON.parse(dataStorage);
+      console.tron.log(data);
+      this.setState({ data });
+    } catch (error) {
+      console.tron.log('Ocorreu um erro');
+    }
+  };
+
+  addRepository = async () => {
+    try {
+      const { repository, data } = this.state;
+
+      this.setState({ loading: true, refreshing: false });
+
+      const response = await api.get(`/repos/${repository}`);
+
+      if (!data.some(repo => repo.id === response.data.id)) {
+        const newValues = {
+          id: response.data.id,
+          login: response.data.name,
+          name: response.data.owner.login,
+          organization: response.data.organization.login || 'Não tem',
+          avatar_url: response.data.owner.avatar_url || '',
+        };
+
+        await AsyncStorage.setItem(
+          '@GitIssues:respositories',
+          JSON.stringify([...data, newValues]),
+        );
+
+        this.setState({
+          data: [...data, newValues],
+          repository: '',
+        });
+      }
+    } catch (error) {
+      console.tron.log('Ocorreu um erro');
+    } finally {
+      this.setState({ loading: false, refreshing: false });
+    }
+  };
 
   renderListItem = ({ item }) => <RepositoryItem repository={item} />;
 

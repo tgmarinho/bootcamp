@@ -10,11 +10,11 @@ import styles from './styles';
 const RepositoryItem = ({ repository }) => (
   <View style={styles.container}>
     <View style={styles.boxContainer}>
-      <Image style={styles.avatar} source={{ uri: repository.owner.avatar_url }} />
+      <Image style={styles.avatar} source={{ uri: repository.avatar_url }} />
 
       <View style={styles.header}>
-        <Text style={styles.login}>{repository.owner.login}</Text>
-        <Text style={styles.name}>{repository.name}</Text>
+        <Text style={styles.login}>{repository.name}</Text>
+        <Text style={styles.name}>{repository.login}</Text>
       </View>
     </View>
 
