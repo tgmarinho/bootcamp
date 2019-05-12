@@ -16,7 +16,9 @@ const TodoList = ({ todos, dispatch }) => (
     }}
   >
     {todos.map(todo => (
-      <Text key={todo}>{todo}</Text>
+      <Text style={{ textDecorationLine: todo.completed ? 'line-through' : 'none' }} key={todo.id}>
+        {todo.text}
+      </Text>
     ))}
     <Button onPress={() => dispatch({ type: 'ADD_TODO', text: 'novo todo' })} title="Add todo" />
   </View>
