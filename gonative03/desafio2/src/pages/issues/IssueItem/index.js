@@ -1,32 +1,33 @@
 import React from 'react';
-import { withNavigation } from 'react-navigation';
 
 import {
-  View, TouchableOpacity, Image, Text,
+  View, TouchableOpacity, Image, Text, Linking,
 } from 'react-native';
 import Icon from 'react-native-vector-icons/FontAwesome';
 
 import styles from './styles';
 
-const IssueItem = ({ repository, navigation }) => (
-  <View style={styles.container}>
+const IssueItem = ({ issue }) => (
+  <TouchableOpacity
+    key={issue.id}
+    style={styles.container}
+    onPress={() => Linking.openURL(issue.html_url)}
+  >
     <View style={styles.boxContainer}>
-      <Image style={styles.avatar} source={{ uri: repository.avatar_url }} />
+      <Image style={styles.avatar} source={{ uri: issue.user.avatar_url }} />
 
       <View style={styles.header}>
-        <Text style={styles.login}>{repository.login}</Text>
-        <Text style={styles.name}>{repository.name}</Text>
+        <Text style={styles.title} numberOfLines={1} ellipsizeMode="tail">
+          {issue.title}
+        </Text>
+        <Text style={styles.name}>{issue.user.login}</Text>
       </View>
     </View>
 
     <View styles={styles.icon}>
-      <TouchableOpacity
-        onPress={() => navigation.navigate('Issues', { repository: repository.url })}
-      >
-        <Icon name="chevron-right" size={16} style={styles.icon} />
-      </TouchableOpacity>
+      <Icon name="chevron-right" size={16} style={styles.icon} />
     </View>
-  </View>
+  </TouchableOpacity>
 );
 
-export default withNavigation(IssueItem);
+export default IssueItem;

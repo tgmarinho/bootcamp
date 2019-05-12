@@ -11,8 +11,8 @@ import styles from './styles';
 const Header = ({ title, navigation }) => (
   <View style={styles.container}>
     <StatusBar barStyle="dark-content" />
-    {!navigation ? (
-      <TouchableOpacity onPress={() => navigation.navigate.goBack()}>
+    {navigation.state.key !== 'Repositories' ? (
+      <TouchableOpacity onPress={() => navigation.navigate('Repositories')}>
         <Icon name="chevron-left" sinze={16} style={styles.icon} />
       </TouchableOpacity>
     ) : (
@@ -31,4 +31,4 @@ Header.propTypes = {
   }).isRequired,
 };
 
-export default Header;
+export default withNavigation(Header);

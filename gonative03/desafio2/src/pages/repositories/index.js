@@ -23,10 +23,10 @@ export default class Repositories extends Component {
 
   loadRepositories = async () => {
     try {
-      const dataStorage = await AsyncStorage.getItem('@GitIssuess:respositories');
-      if (!dataStorage) {
+      const dataStorage = (await AsyncStorage.getItem('@GitIssues:respositories')) || [];
+
+      if (dataStorage.length > 0) {
         const data = JSON.parse(dataStorage);
-        console.tron.log(data);
         this.setState({ data });
       }
     } catch (error) {
@@ -36,12 +36,11 @@ export default class Repositories extends Component {
 
   addRepository = async () => {
     try {
-      const { repository, data } = this.state;
+      const { data, repository } = this.state;
 
       this.setState({ loading: true, refreshing: false });
 
       const response = await api.get(`/repos/${repository}`);
-
       if (!data.some(repo => repo.id === response.data.id)) {
         const newValues = {
           id: response.data.id,
@@ -53,7 +52,7 @@ export default class Repositories extends Component {
         };
 
         await AsyncStorage.setItem(
-          '@GitIssuess:respositories',
+          '@GitIssues:respositories',
           JSON.stringify([...data, newValues]),
         );
 

@@ -25,15 +25,15 @@ const styles = StyleSheet.create({
     justifyContent: 'center',
   },
   login: {
-    fontSize: 16,
+    fontSize: 18,
     fontWeight: 'bold',
   },
   name: {
-    fontSize: 12,
-    color: colors.light,
+    color: colors.regular,
+    fontSize: 14,
   },
   icon: {
-    color: colors.light,
+    color: colors.regular,
   },
 });
 

@@ -7,6 +7,11 @@ const styles = StyleSheet.create({
     backgroundColor: colors.light,
     marginTop: metrics.baseMargin,
   },
+  activeFilter: {
+    color: colors.darker,
+    fontSize: 15,
+    fontWeight: 'bold',
+  },
   boxButtons: {
     marginTop: metrics.baseMargin,
     flexDirection: 'row',
@@ -21,6 +26,9 @@ const styles = StyleSheet.create({
   buttonTitle: {
     fontWeight: 'bold',
     color: colors.dark,
+  },
+  loading: {
+    marginTop: metrics.baseMargin * 2,
   },
 });
 

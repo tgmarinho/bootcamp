@@ -1,6 +1,7 @@
 import React, { Component } from 'react';
+import { withNavigation } from 'react-navigation';
 import {
-  View, FlatList, Text, TouchableOpacity,
+  View, FlatList, Text, TouchableOpacity, ActivityIndicator,
 } from 'react-native';
 import Header from '~/components/Header';
 import api from '~/services/api';
@@ -11,81 +12,91 @@ class Issues extends Component {
   state = {
     loading: false,
     data: [],
+    activeFilter: 'all',
     refreshing: false,
+    error: null,
   };
 
   async componentDidMount() {
-    try {
-      const { navigation } = this.props;
-      const repository = navigation.getParam('full_name');
-
-      console.tron.log(repository);
-      const response = await api.get(`/repos/${repository}/issues`);
-
-      const data = {
-        id: response.data.id,
-        title: response.data.title,
-        avatar: response.data.user.avatar_url,
-        name: response.data.user.login,
-        state: response.data.state,
-        url: response.data.url,
-      };
-
-      this.setState({ data });
-    } catch (error) {
-      console.tron.log('ocorreu um erro');
-    }
+    this.loadIssues();
   }
 
-  filterByAll = () => {
-    this.setState({
-      data: this.state.data.filter(issue => issue.state === 'all'),
-    });
+  loadIssues = async () => {
+    try {
+      this.setState({ loading: true, refreshing: true });
+
+      const { navigation } = this.props;
+      const repository = navigation.getParam('repository');
+
+      const { data } = await api.get(`/repos/${repository}/issues`);
+
+      this.setState({ data });
+      this.setState({ error: null });
+    } catch (error) {
+      console.tron.log('ocorreu um erro', error);
+      this.setState({ error: 'Ocorreu um erro' });
+    } finally {
+      this.setState({ loading: false, refreshing: false });
+    }
   };
 
-  filterByOpen = () => {
-    this.setState({
-      data: this.state.data.filter(issue => issue.state === 'open'),
-    });
+  renderListItem = ({ item }) => <IssueItem issue={item} />;
+
+  renderList = () => {
+    const { refreshing, data } = this.state;
+
+    return !data.length ? (
+      <Text style={styles.empty}>Nenhuma issue encontrada</Text>
+    ) : (
+      <FlatList
+        data={data}
+        onRefresh={this.loadIssues}
+        keyExtractor={item => String(item.id)}
+        renderItem={this.renderListItem}
+        refreshing={refreshing}
+      />
+    );
   };
 
-  filterByClosed = () => {
-    this.setState({
-      data: this.state.data.filter(issue => issue.state === 'closed'),
-    });
-  };
+  changeFilter = async (value) => {
+    this.setState({ activeFilter: value, loading: true });
 
-  renderListItem = ({ item }) => <IssueItem repository={item} />;
+    const { navigation } = this.props;
+    const repository = navigation.getParam('repository');
+
+    try {
+      const { data } = await api.get(`/repos/${repository}/issues?state=${value}`);
+      console.tron.log(data);
+      this.setState({ data, error: null });
+    } catch (_err) {
+      this.setState({ error: 'Erro ao recuperar as Issues' });
+    } finally {
+      this.setState({ loading: false });
+    }
+  };
 
   render() {
-    const {
-      repository, loading, data, refreshing,
-    } = this.state;
+    const { loading, activeFilter } = this.state;
 
     return (
       <View style={styles.container}>
         <Header title="Issues" navigator={{ navigation: 'Repositories' }} />
         <View style={styles.boxButtons}>
-          <TouchableOpacity style={styles.button} onPress={this.filterByAll}>
-            <Text style={styles.buttonTitle}>Todas</Text>
+          <TouchableOpacity style={styles.button} onPress={() => this.changeFilter('all')}>
+            <Text style={[styles.buttonTitle, activeFilter === 'all' && styles.activeFilter]}>Todas</Text>
           </TouchableOpacity>
-          <TouchableOpacity style={styles.button} onPress={this.filterByOpen}>
-            <Text style={styles.buttonTitle}>Abertas</Text>
+          <TouchableOpacity style={styles.button} onPress={() => this.changeFilter('open')}>
+            <Text style={[styles.buttonTitle, activeFilter === 'open' && styles.activeFilter]}>Abertas</Text>
           </TouchableOpacity>
-          <TouchableOpacity style={styles.button} onPress={this.filterByClosed}>
-            <Text style={styles.buttonTitle}>Fechadas</Text>
+          <TouchableOpacity style={styles.button} onPress={() => this.changeFilter('closed')}>
+            <Text style={[styles.buttonTitle, activeFilter === 'closed' && styles.activeFilter]}>Fechadas</Text>
           </TouchableOpacity>
         </View>
 
-        <FlatList
-          data={data}
-          keyExtractor={item => String(item.id)}
-          renderItem={this.renderListItem}
-          refreshing={refreshing}
-        />
+        {loading ? <ActivityIndicator size="large" style={styles.loading} /> : this.renderList()}
       </View>
     );
   }
 }
 
-export default Issues;
+export default withNavigation(Issues);

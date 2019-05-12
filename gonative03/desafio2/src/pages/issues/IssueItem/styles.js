@@ -22,19 +22,21 @@ const styles = StyleSheet.create({
     borderRadius: 25,
   },
   header: {
-    padding: metrics.baseMargin,
+    flex: 1,
     justifyContent: 'center',
+    marginLeft: metrics.baseMargin,
   },
-  login: {
-    fontSize: 16,
+  title: {
+    fontSize: 18,
     fontWeight: 'bold',
+    marginBottom: 3,
   },
   name: {
-    fontSize: 12,
-    color: colors.light,
+    color: colors.regular,
+    fontSize: 14,
   },
   icon: {
-    color: colors.light,
+    color: colors.regular,
   },
 });
 

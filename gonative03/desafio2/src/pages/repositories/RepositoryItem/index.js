@@ -9,7 +9,14 @@ import Icon from 'react-native-vector-icons/FontAwesome';
 import styles from './styles';
 
 const RepositoryItem = ({ repository, navigation }) => (
-  <View style={styles.container}>
+  <TouchableOpacity
+    style={styles.container}
+    onPress={() => navigation.navigate('Issues', {
+      repository: repository.full_name,
+      name: repository.name,
+    })
+    }
+  >
     <View style={styles.boxContainer}>
       <Image style={styles.avatar} source={{ uri: repository.avatar_url }} />
 
@@ -20,17 +27,9 @@ const RepositoryItem = ({ repository, navigation }) => (
     </View>
 
     <View styles={styles.icon}>
-      <TouchableOpacity
-        onPress={() => navigation.navigate('Issues', {
-          repository: repository.full_name,
-          name: repository.name,
-        })
-        }
-      >
-        <Icon name="chevron-right" size={16} style={styles.icon} />
-      </TouchableOpacity>
+      <Icon name="chevron-right" size={16} style={styles.icon} />
     </View>
-  </View>
+  </TouchableOpacity>
 );
 
 export default withNavigation(RepositoryItem);
