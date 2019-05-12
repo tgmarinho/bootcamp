@@ -13,7 +13,7 @@ const RepositoryItem = ({ repository, navigation }) => (
     style={styles.container}
     onPress={() => navigation.navigate('Issues', {
       repository: repository.full_name,
-      name: repository.name,
+      repositoryName: repository.login.toUpperCase(),
     })
     }
   >

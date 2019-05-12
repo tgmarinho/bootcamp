@@ -7,6 +7,19 @@ const styles = StyleSheet.create({
     backgroundColor: colors.light,
     marginTop: metrics.baseMargin,
   },
+  empty: {
+    color: colors.dark,
+    marginTop: metrics.baseMargin * 2,
+    textAlign: 'center',
+  },
+
+  error: {
+    color: colors.danger,
+    fontSize: 12,
+    fontWeight: 'bold',
+    textAlign: 'center',
+  },
+
   activeFilter: {
     color: colors.darker,
     fontSize: 15,

@@ -43,7 +43,11 @@ class Issues extends Component {
   renderListItem = ({ item }) => <IssueItem issue={item} />;
 
   renderList = () => {
-    const { refreshing, data } = this.state;
+    const { refreshing, data, error } = this.state;
+
+    if (error) {
+      return <Text style={styles.error}>{error}</Text>;
+    }
 
     return !data.length ? (
       <Text style={styles.empty}>Nenhuma issue encontrada</Text>
@@ -68,7 +72,7 @@ class Issues extends Component {
       const { data } = await api.get(`/repos/${repository}/issues?state=${value}`);
       console.tron.log(data);
       this.setState({ data, error: null });
-    } catch (_err) {
+    } catch (error) {
       this.setState({ error: 'Erro ao recuperar as Issues' });
     } finally {
       this.setState({ loading: false });
@@ -80,16 +84,25 @@ class Issues extends Component {
 
     return (
       <View style={styles.container}>
-        <Header title="Issues" navigator={{ navigation: 'Repositories' }} />
+        <Header
+          title={this.props.navigation.getParam('repositoryName')}
+          navigator={{ navigation: 'Repositories' }}
+        />
         <View style={styles.boxButtons}>
           <TouchableOpacity style={styles.button} onPress={() => this.changeFilter('all')}>
-            <Text style={[styles.buttonTitle, activeFilter === 'all' && styles.activeFilter]}>Todas</Text>
+            <Text style={[styles.buttonTitle, activeFilter === 'all' && styles.activeFilter]}>
+              Todas
+            </Text>
           </TouchableOpacity>
           <TouchableOpacity style={styles.button} onPress={() => this.changeFilter('open')}>
-            <Text style={[styles.buttonTitle, activeFilter === 'open' && styles.activeFilter]}>Abertas</Text>
+            <Text style={[styles.buttonTitle, activeFilter === 'open' && styles.activeFilter]}>
+              Abertas
+            </Text>
           </TouchableOpacity>
           <TouchableOpacity style={styles.button} onPress={() => this.changeFilter('closed')}>
-            <Text style={[styles.buttonTitle, activeFilter === 'closed' && styles.activeFilter]}>Fechadas</Text>
+            <Text style={[styles.buttonTitle, activeFilter === 'closed' && styles.activeFilter]}>
+              Fechadas
+            </Text>
           </TouchableOpacity>
         </View>
 

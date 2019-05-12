@@ -15,6 +15,8 @@ export default class Repositories extends Component {
     loading: false,
     data: [],
     refreshing: false,
+    error: false,
+    placeHolder: 'Adicionar novo repositório',
   };
 
   async componentDidMount() {
@@ -46,8 +48,8 @@ export default class Repositories extends Component {
           id: response.data.id,
           login: response.data.name,
           name: response.data.owner.login,
-          organization: response.data.organization.login || 'Não tem',
-          avatar_url: response.data.owner.avatar_url || '',
+          organization: response.data.organization.login,
+          avatar_url: response.data.owner.avatar_url,
           full_name: response.data.full_name,
         };
 
@@ -59,10 +61,12 @@ export default class Repositories extends Component {
         this.setState({
           data: [...data, newValues],
           repository: '',
+          error: false,
         });
       }
     } catch (error) {
       console.tron.log('Ocorreu um erro', error);
+      this.setState({ error: true, repository: '', placeHolder: 'Repositório não encontrado...' });
     } finally {
       this.setState({ loading: false, refreshing: false });
     }
@@ -72,7 +76,7 @@ export default class Repositories extends Component {
 
   render() {
     const {
-      repository, loading, data, refreshing,
+      repository, loading, data, refreshing, error, placeHolder,
     } = this.state;
 
     return (
@@ -80,10 +84,10 @@ export default class Repositories extends Component {
         <Header title="GitIssues" />
         <View style={styles.boxInput}>
           <TextInput
-            style={styles.input}
+            style={[styles.input, error && styles.inputError]}
             autoCapitalize="none"
             autoCorrect={false}
-            placeholder="Adicionar novo repositório"
+            placeholder={placeHolder}
             underlineColorAndroid="transparent"
             placeholderTextColor="#999"
             value={repository}

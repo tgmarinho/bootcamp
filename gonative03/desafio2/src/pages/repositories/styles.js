@@ -7,6 +7,7 @@ const styles = StyleSheet.create({
     backgroundColor: colors.light,
     marginTop: metrics.baseMargin,
   },
+
   boxInput: {
     flexDirection: 'row',
     marginHorizontal: metrics.baseMargin * 2,
@@ -15,6 +16,13 @@ const styles = StyleSheet.create({
     paddingBottom: 15,
     borderBottomWidth: 1,
     borderBottomColor: '#CCC',
+  },
+  inputError: {
+    borderColor: colors.danger,
+    borderLeftWidth: 2,
+    borderRightWidth: 2,
+    borderTopWidth: 2,
+    borderBottomWidth: 2,
   },
   input: {
     flex: 1,
