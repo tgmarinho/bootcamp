@@ -21,7 +21,7 @@ const styles = StyleSheet.create({
     height: 50,
     borderRadius: 25,
   },
-  header: {
+  infoContainer: {
     flex: 1,
     justifyContent: 'center',
     marginLeft: metrics.baseMargin,
@@ -31,7 +31,7 @@ const styles = StyleSheet.create({
     fontWeight: 'bold',
     marginBottom: 3,
   },
-  name: {
+  login: {
     color: colors.regular,
     fontSize: 14,
   },

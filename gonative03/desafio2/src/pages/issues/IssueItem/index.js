@@ -16,11 +16,11 @@ const IssueItem = ({ issue }) => (
     <View style={styles.boxContainer}>
       <Image style={styles.avatar} source={{ uri: issue.user.avatar_url }} />
 
-      <View style={styles.header}>
+      <View style={styles.infoContainer}>
         <Text style={styles.title} numberOfLines={1} ellipsizeMode="tail">
           {issue.title}
         </Text>
-        <Text style={styles.name}>{issue.user.login}</Text>
+        <Text style={styles.login}>{issue.user.login}</Text>
       </View>
     </View>
 
