@@ -12,7 +12,7 @@ function reducer(state = INITIAL_STATE, action) {
     case 'ADD_TODO':
       return [...state, { id: Math.random(), text: action.text, completed: false }];
     case 'MARK_AS_COMPLETED':
-      return state;
+      return state.map(todo => (todo.id === action.id ? { ...todo, completed: !todo.completed } : todo));
     default:
       return state;
   }
