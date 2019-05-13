@@ -1,6 +1,6 @@
 import { createStore, compose, applyMiddleware } from 'redux';
 
-import reducer from './reducers/login';
+import reducer from './reducers';
 
 const composer = __DEV__
   ? compose(
@@ -10,5 +10,7 @@ const composer = __DEV__
   : compose(applyMiddleware(...[]));
 
 const store = createStore(reducer, composer);
+
+console.tron.log(store.getState());
 
 export default store;
