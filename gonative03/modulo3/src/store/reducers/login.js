@@ -13,7 +13,10 @@ export default function login(state = INITIAL_STATE, action) {
       return { ...state, loading: true };
     case 'LOGIN_SUCCESS':
       return {
-        ...state, username: action.payload.username, error: false, loading: false,
+        ...state,
+        username: action.payload.username,
+        error: false,
+        loading: false,
       };
     case 'LOGIN_FAILURE':
       return { ...state, error: true, loading: false };
