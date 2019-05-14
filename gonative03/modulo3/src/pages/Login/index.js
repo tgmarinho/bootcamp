@@ -1,29 +1,35 @@
 import React, { Component } from 'react';
-import { View } from 'react-native';
+import { connect } from 'react-redux';
+import { bindActionCreators } from 'redux';
+import * as LoginActions from '../../store/actions/login';
 import api from '../../services/api';
-
 import {
   Container, Input, Button, ButtonText, Error,
 } from './styles';
 
-export default class Login extends Component {
+class Login extends Component {
   state = { username: '' };
 
   handleSubmit = async () => {
     const { username } = this.state;
+    const { loginSuccess, loginFailure, navigation } = this.props;
+
     try {
       await api.get(`/users/${username}`);
+      loginSuccess(username);
+      navigation.navigate('Repositories');
     } catch (error) {
-      // setar o erro
+      loginFailure();
     }
   };
 
   render() {
     const { username } = this.state;
-    console.tron.log(username);
-
+    const { error } = this.props;
     return (
       <Container>
+        {error && <Error>Usuário inexistente </Error>}
+
         <Input
           value={username}
           onChangeText={username => this.setState({ username })}
@@ -38,3 +44,14 @@ export default class Login extends Component {
     );
   }
 }
+
+const mapStateToProps = state => ({
+  error: state.login.error,
+});
+
+const mapDispatchToProps = dispatch => bindActionCreators(LoginActions, dispatch);
+
+export default connect(
+  mapStateToProps,
+  mapDispatchToProps,
+)(Login);
