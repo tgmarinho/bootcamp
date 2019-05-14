@@ -13,7 +13,6 @@ class Repositories extends Component {
 
   render() {
     const { repositories } = this.props;
-    console.tron.log('RENDER REPO: ', repositories);
     return (
       <Container>
         {repositories.loading ? (

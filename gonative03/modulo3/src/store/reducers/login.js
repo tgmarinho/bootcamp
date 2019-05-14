@@ -1,11 +1,9 @@
 // Reducers
-const INITIAL_STATE = [
-  {
-    username: null,
-    error: false,
-    loading: false,
-  },
-];
+const INITIAL_STATE = {
+  username: null,
+  error: false,
+  loading: false,
+};
 
 export default function login(state = INITIAL_STATE, action) {
   switch (action.type) {
