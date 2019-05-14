@@ -6081,6 +6081,11 @@ reactotron-react-native@^3.5.0:
     reactotron-core-client "^2.7.0"
     rn-host-detect "^1.1.5"
 
+reactotron-redux-saga@^4.2.2:
+  version "4.2.2"
+  resolved "https://registry.yarnpkg.com/reactotron-redux-saga/-/reactotron-redux-saga-4.2.2.tgz#09072b4f43520db9646550937c7195d9b44bf81e"
+  integrity sha512-5BHi7Fj+8WOB3bMfr9lshQD9ml1aZnwk74GJpcOATxxMeHevp26ethaLsP0pPv+B6Ojqw7QLMEBX09B3u+z1Bg==
+
 reactotron-redux@^3.1.0:
   version "3.1.0"
   resolved "https://registry.yarnpkg.com/reactotron-redux/-/reactotron-redux-3.1.0.tgz#05676499891a3629ce90121fc22ddd4fd96eeafa"
