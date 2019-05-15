@@ -1,7 +1,7 @@
 import { combineReducers } from 'redux';
 
-import { toogle } from './modal';
+import { addUser } from './addUser';
 
 export default combineReducers({
-  toogle,
+  addUser,
 });

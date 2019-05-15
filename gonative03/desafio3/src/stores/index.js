@@ -2,7 +2,7 @@ import { createStore, compose, applyMiddleware } from 'redux';
 import createSagaMiddleware from 'redux-saga';
 
 import rootReducer from './ducks';
-// import rootSaga from './sagas';
+import rootSaga from './sagas';
 
 const middlewares = [];
 
@@ -20,7 +20,7 @@ const composer = __DEV__
 
 const store = createStore(rootReducer, composer);
 
-// sagaMiddleware.run(rootSaga);
+sagaMiddleware.run(rootSaga);
 
 console.tron.log(store.getState());
 

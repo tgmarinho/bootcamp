@@ -1,8 +1,8 @@
 import React, { useState } from 'react';
-import { Alert } from 'react-native';
+import { ActivityIndicator } from 'react-native';
 import { connect } from 'react-redux';
 import { bindActionCreators } from 'redux';
-import { Creators as ModalActions } from '~/stores/ducks/modal';
+import { Creators as AddUserActions } from '~/stores/ducks/addUser';
 
 import {
   ModalAddUser,
@@ -16,10 +16,17 @@ import {
   ButtonText,
 } from './styles';
 
-const AddUser = ({ visible, toogle }) => {
+const AddUser = ({
+  visible, loading, closeModal, addUserRequest,
+}) => {
   const [username, setUsername] = useState('');
 
-  console.tron.log('toogle::', toogle);
+  const handleSaveUser = () => {
+    console.tron.log(username, addUserRequest);
+    if (username === '') return;
+
+    addUserRequest(username);
+  };
 
   return (
     <ModalAddUser
@@ -36,16 +43,20 @@ const AddUser = ({ visible, toogle }) => {
           <Input
             placeholder="Usuário no Github"
             value={username}
-            onChangeText={username => setUsername({ username })}
+            onChangeText={username => setUsername({ username: username.trim() })}
             autoCapitalize="none"
             autoCorret={false}
           />
           <GroupButton>
             <Cancel>
-              <ButtonText onPress={() => toogle()}>Cancelar</ButtonText>
+              <ButtonText onPress={closeModal}>Cancelar</ButtonText>
             </Cancel>
             <Save>
-              <ButtonText onPress={() => {}}>Salvar</ButtonText>
+              {loading ? (
+                <ActivityIndicator size="small" color="#fff" />
+              ) : (
+                <ButtonText onPress={handleSaveUser}>Salvar</ButtonText>
+              )}
             </Save>
           </GroupButton>
         </Content>
@@ -55,10 +66,11 @@ const AddUser = ({ visible, toogle }) => {
 };
 
 const mapStateToProps = state => ({
-  visible: state.toogle.visible,
+  visible: state.addUser.visible,
+  loading: state.addUser.loading,
 });
 
-const mapDispatchToProps = dispatch => bindActionCreators(ModalActions, dispatch);
+const mapDispatchToProps = dispatch => bindActionCreators(AddUserActions, dispatch);
 
 export default connect(
   mapStateToProps,

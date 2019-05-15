@@ -1,24 +1,16 @@
-import { StyleSheet } from 'react-native';
+import styled from 'styled-components/native';
 
-const styles = StyleSheet.create({
-  container: {
-    flex: 1,
-  },
-  annotationContainer: {
-    width: 30,
-    height: 30,
-    alignItems: 'center',
-    justifyContent: 'center',
-    backgroundColor: 'white',
-    borderRadius: 15,
-  },
-  annotationFill: {
-    width: 30,
-    height: 30,
-    borderRadius: 15,
-    backgroundColor: '#7159C1',
-    transform: [{ scale: 0.8 }],
-  },
-});
+export const AnnotationContainer = styled.View`
+  align-items: center;
+  justify-content: center;
+  background-color: white;
+  width: 60;
+  height: 60;
+  border-radius: 30;
+`;
 
-export default styles;
+export const Avatar = styled.Image`
+  width: 50;
+  height: 50;
+  border-radius: 25;
+`;
