@@ -1,7 +1,15 @@
 import React, { Component } from 'react';
-import { Modal, Alert } from 'react-native';
+import { Alert } from 'react-native';
 import {
-  Container, Content, Text, Input, GroupButton, Button, ButtonText,
+  ModalAddUser,
+  Container,
+  Content,
+  Text,
+  Input,
+  GroupButton,
+  Save,
+  Cancel,
+  ButtonText,
 } from './styles';
 
 export default class AddUser extends Component {
@@ -15,7 +23,7 @@ export default class AddUser extends Component {
 
   render() {
     return (
-      <Modal
+      <ModalAddUser
         animationType="fade"
         transparent
         visible={this.state.modalVisible}
@@ -25,19 +33,19 @@ export default class AddUser extends Component {
       >
         <Container>
           <Content>
-            <Text>Adicionar novo locasl</Text>
+            <Text>Adicionar novo local</Text>
             <Input placeholder="Usuário no Github" />
             <GroupButton>
-              <Button>
+              <Cancel>
                 <ButtonText>Cancelar</ButtonText>
-              </Button>
-              <Button>
+              </Cancel>
+              <Save>
                 <ButtonText>Salvar</ButtonText>
-              </Button>
+              </Save>
             </GroupButton>
           </Content>
         </Container>
-      </Modal>
+      </ModalAddUser>
     );
   }
 }
