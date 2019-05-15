@@ -21,9 +21,17 @@ const INITIAL_STATE = {
 export function addUser(state = INITIAL_STATE, action) {
   switch (action.type) {
     case Types.OPEN_MODAL:
-      return { ...state, visible: true, coordinates: action.payload.coordinates };
+      return {
+        ...state,
+        visible: true,
+        coordinates: action.payload.coordinates,
+      };
     case Types.CLOSE_MODAL:
-      return { ...state, visible: false, coordinates: '' };
+      return {
+        ...state,
+        visible: false,
+        coordinates: '',
+      };
     case Types.ADD_USER_REQUEST:
       return { ...state, username: action.payload.username, loading: true };
     case Types.ADD_USER_SUCCESS:
@@ -60,7 +68,7 @@ export const Creators = {
   }),
   addUserRequest: username => ({
     type: Types.ADD_USER_REQUEST,
-    payload: username,
+    payload: { username },
   }),
   addUserSuccess: user => ({
     type: Types.ADD_USER_SUCCESS,

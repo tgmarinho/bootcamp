@@ -14,9 +14,6 @@ export const Content = styled.View`
   width: 90%;
   height: 25%;
   box-shadow: 2px 2px 2px rgba(255, 255, 255, 0.3);
-  /* shadow-color: #000; */
-  shadow-offset: {width: 0, height: 2};
-  /* shadow-opacity: 0.3; */
   border-radius: 5px;
   justify-content: center;
   align-items: center;
@@ -31,6 +28,15 @@ export const Text = styled.Text`
   text-align: center;
   margin-bottom: 15px;
 `;
+
+export const TextError = styled.Text`
+  font-size: 14px;
+  font-weight: bold;
+  color: #f00;
+  text-align: center;
+  margin-bottom: 15px;
+`;
+
 export const Input = styled.TextInput.attrs({
   placeholderTextColor: '#999',
 })`
@@ -44,11 +50,13 @@ export const Input = styled.TextInput.attrs({
   font-size: 16px;
   color: #333;
 `;
+
 export const GroupButton = styled.View`
   flex-direction: row;
   width: 100%;
   justify-content: space-between;
 `;
+
 export const ButtonText = styled.Text`
   color: #fff;
   font-size: 18px;

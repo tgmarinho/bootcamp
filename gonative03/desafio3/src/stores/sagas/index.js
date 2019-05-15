@@ -9,14 +9,13 @@ function* getUser(action) {
   try {
     const { username } = action.payload;
     const coordinates = yield select(state => state.addUser.coordinates);
-    console.tron.log('SAGAO ', coordinates);
     const { data } = yield call(api.get, `/users/${username}`);
 
     const user = {
       id: data.id,
       login: data.login,
-      name: data.name,
-      bio: data.bio,
+      name: data.name || '¯\\_(ツ)_/¯',
+      bio: data.bio || '¯\\_(ツ)_/¯',
       avatar_url: data.avatar_url,
       coordinates,
     };

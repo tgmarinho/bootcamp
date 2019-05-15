@@ -1,3 +1,3 @@
 if (__DEV__) {
-  require("react-devtools");
+  require('react-devtools');
 }
