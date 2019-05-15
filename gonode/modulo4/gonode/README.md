@@ -18,6 +18,17 @@ adonis new yardstick --api-only
 
 or manually clone the repo and then run `npm install`.
 
+### Connect to Database
+```docker run \
+    --name postgres-adones \
+    -e POSTGRES_PASSWORD=root \
+    -e POSTGRES_USER=tgmarinho \
+    -e POSTGRES_DB=adonis \
+    -p 5432:5432 \
+    -d \
+    postgres
+```
+
 
 ### Migrations
 
