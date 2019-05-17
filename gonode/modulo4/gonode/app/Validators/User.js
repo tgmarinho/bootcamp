@@ -1,10 +1,8 @@
 'use strict'
 
-class User {
-  get validateAll () {
-    return true
-  }
+const BaseValidator = use('App/Validators/BaseValidator')
 
+class User extends BaseValidator {
   get rules () {
     return {
       username: 'required|unique:users',

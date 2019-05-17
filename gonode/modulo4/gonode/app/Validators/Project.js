@@ -1,10 +1,8 @@
 'use strict'
 
-class Project {
-  get validateAll () {
-    return true
-  }
+const BaseValidator = use('App/Validators/BaseValidator')
 
+class Project extends BaseValidator {
   get rules () {
     return {
       title: 'required',

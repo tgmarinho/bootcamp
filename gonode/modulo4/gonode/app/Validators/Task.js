@@ -1,10 +1,8 @@
 'use strict'
 
-class Task {
-  get validateAll () {
-    return true
-  }
+const BaseValidator = use('App/Validators/BaseValidator')
 
+class Task extends BaseValidator {
   get rules () {
     return {
       title: 'required',

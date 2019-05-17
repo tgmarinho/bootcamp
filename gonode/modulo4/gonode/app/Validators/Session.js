@@ -1,10 +1,8 @@
 'use strict'
 
-class Session {
-  get validateAll () {
-    return true
-  }
+const BaseValidator = use('App/Validators/BaseValidator')
 
+class Session extends BaseValidator {
   get rules () {
     return {
       email: 'required|email',
