@@ -26,3 +26,20 @@ Run the following command to run startup migrations.
 ```js
 adonis migration:run
 ```
+
+### Step by Step
+
+Instal Adonis:
+
+```$ npm i -g @adonisjs/cli ```
+
+create API project with name sistac-api (API de Sistema de Agendamento de Compromissos):
+
+```$ adonis new sistac-api --api-only ```
+
+Run project:
+
+```$ adonis serve --dev ```
+
+
+
