@@ -31,7 +31,8 @@
     "adonis-kue": "^5.0.1",
     "crypto": "^1.0.1",
     "moment": "^2.24.0",
-    "pg": "^7.11.0"
+    "pg": "^7.11.0",
+    "raven": "^2.6.4"
   },
   "devDependencies": {
     "eslint": "^5.16.0",
