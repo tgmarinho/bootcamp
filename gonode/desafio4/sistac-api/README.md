@@ -43,3 +43,27 @@ Run project:
 
 
 
+## Eslint + editorconfig
+
+* Install eslint global: ```npm install eslint -g```
+
+* Run: ```eslint --init``` use stardard styleguide and generate by CLI command `eslintrc.json`
+*  Inside eslintrc.json add a configuration to prop globals: ``` "use": true```
+
+```
+ "globals": {
+        "Atomics": "readonly",
+        "SharedArrayBuffer": "readonly",
+        "use": true
+    },
+```
+
+
+Use is a global functoins, its is not declared, then Eslint shold trown a error.
+
+Editor config
+.editorconfig come with default configuratoin when execute adonis new
+
+## Database
+
+
