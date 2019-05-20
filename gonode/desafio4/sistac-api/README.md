@@ -66,4 +66,13 @@ Editor config
 
 ## Database
 
+Inside of the `config/database.js` there a step-by-step how to configure database.
 
+Choice a database and install the dependecy `npm i --save pg`
+
+
+Start docker container postgres: ```docker container start ID```
+
+When the database was created and is running, then run this command:
+
+```adonis migration:run ```, for create the tables basics for user and tokens.
