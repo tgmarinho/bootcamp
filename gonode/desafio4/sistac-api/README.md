@@ -78,3 +78,14 @@ When the database was created and is running, then run this command:
 ```adonis migration:run ```, for create the tables basics for user and tokens.
 
 
+## Creating Controllers
+
+* User: `adonis make:controller User`, it should create a file inside folder Controllers/Http/UserController.js, after you choice http type.
+
+
+* Authentication JWT
+
+* User: `adonis make:controller Session`, it should create a file inside folder Controllers/Http/SessionController.js, after you choice http type.
+
+* Recover Password 
+ `adonis make:controller ForgotPassword`, it should create a file inside folder Controllers/Http/ForgotPassword.js, after you choice http type.
