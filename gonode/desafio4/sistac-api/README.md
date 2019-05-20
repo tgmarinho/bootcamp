@@ -89,3 +89,17 @@ When the database was created and is running, then run this command:
 
 * Recover Password 
  `adonis make:controller ForgotPassword`, it should create a file inside folder Controllers/Http/ForgotPassword.js, after you choice http type.
+
+
+## Setup Email
+Install (see the doc)
+
+`adonis install @adonis/mail`
+
+Next, register the provider inside `start/app.js` file.
+
+```
+const providers = {
+    '@adonisjs/mail/providers/MailProvider'
+}
+```
