@@ -3,6 +3,8 @@
 const BaseExceptionHandler = use('BaseExceptionHandler')
 const Youch = use('Youch')
 const Env = use('Env')
+const Raven = require('raven')
+const Config = use('Config')
 /**
  * This class handles all exceptions thrown during
  * the HTTP request lifecycle.
@@ -23,11 +25,11 @@ class ExceptionHandler extends BaseExceptionHandler {
    */
   async handle (error, { request, response }) {
     if (error.name === 'ValidationException') {
-      response.status(error.status).send(error.message)
+      return response.status(error.status).send(error.messages)
     }
 
     if (Env.get('NODE_ENV') === 'development') {
-      const youch = Youch(error, request.request)
+      const youch = new Youch(error, request.request)
       const errorJSON = await youch.toJSON()
       return response.status(error.status).send(errorJSON)
     }
@@ -46,7 +48,8 @@ class ExceptionHandler extends BaseExceptionHandler {
    * @return {void}
    */
   async report (error, { request }) {
-    console.log(error) // configurar o sentry.io depois
+    Raven.config(Config.get('sentry.sentry.dsn'))
+    Raven.captureException(error)
   }
 }
 

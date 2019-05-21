@@ -6,22 +6,7 @@
 
 const Event = use('App/Models/Event')
 const Database = use('Database')
-const moment = require('moment')
 
-const changeYearOf = date => moment(date).set({ year: '1910' })
-const compareOf = (dateX, dateY) => {
-  const newDateX = changeYearOf(dateX)
-  const newDateY = changeYearOf(dateY)
-
-  if (newDateX.isAfter(newDateY)) {
-    return 1
-  }
-  if (newDateX.isBefore(newDateY)) {
-    return -1
-  }
-  // a must be equal to b
-  return 0
-}
 /**
  * Resourceful controller for interacting with events
  */
@@ -70,7 +55,9 @@ class EventController {
       const newEvent = await Event.create({ ...data, user_id: auth.user.id })
       return newEvent
     } catch (err) {
-      console.log(err)
+      return response.status(err.status).send({
+        error: { message: 'Ocorreu um erro inexperado!' }
+      })
     }
   }
 
