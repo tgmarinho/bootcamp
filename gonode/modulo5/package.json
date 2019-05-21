@@ -4,12 +4,20 @@
   "main": "index.js",
   "license": "MIT",
   "dependencies": {
-    "express": "^4.17.0"
+    "dotenv": "^8.0.0",
+    "express": "^4.17.0",
+    "pg": "^7.11.0",
+    "sequelize": "^5.8.6"
   },
   "devDependencies": {
-    "jest": "^24.8.0"
+    "jest": "^24.8.0",
+    "nodemon": "^1.19.0",
+    "sequelize-cli": "^5.4.0",
+    "sqlite3": "^4.0.8"
   },
   "scripts": {
-    "test": "jest"
+    "test": "NODE_ENV=test jest",
+    "start": "node src/server.js",
+    "dev": "nodemon src/server.js --ignore __tests__"
   }
 }
