@@ -6,15 +6,7 @@
 * Rodei o comando `yarn sequelize init` para gerar os arquivos de configuração do sequelize e coloquei nas pastas corretas.
 * Criando a migration: `yarn sequelize migration:create --name=create-users`
 * Rodar o banco conforme as configurações de dentro do config/database.js (.env)
-Docker:
 
-```
-MyConfig
-DB_HOST=127.0.0.1
-DB_USER=docker
-DB_PASS=docker
-DB_NAME=nodetdd
-```
 Criando o banco de dados via docker
 
 ```
@@ -27,6 +19,10 @@ Criando o banco de dados via docker
     -d \
     postgres
 ```
+
+Depois para ligar o serviço
+```docker container start postgres-node-tdd```
+
 
 * Executar a migration: `yarn sequelize db:migrate `
   
