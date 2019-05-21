@@ -96,6 +96,9 @@ class EventController {
     const event = await Event.findOrFail(params.id)
 
     if (event.user_id === auth.user.id) {
+      if (moment(event.datetime).isBefore(moment())) {
+        throw new Error('Não é possível excluir ou alterar um evento passado')
+      }
       event.merge(data)
       await event.save()
 
@@ -119,13 +122,7 @@ class EventController {
     const event = await Event.findOrFail(params.id)
 
     if (event.user_id === auth.user.id) {
-      if (moment(event.datetime).isAfter(moment())) {
-        await event.delete()
-      } else {
-        return response.status(401).send({
-          error: { message: 'Não é possivel excluir um evento passado.' }
-        })
-      }
+      await event.delete()
     } else {
       return response.status(401).send({
         error: { message: 'Só o criador do evento pode deletá-lo!' }

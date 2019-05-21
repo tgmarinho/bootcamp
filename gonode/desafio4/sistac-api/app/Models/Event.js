@@ -6,6 +6,8 @@ const Model = use('Model')
 class Event extends Model {
   static boot () {
     super.boot()
+
+    this.addHook('beforeDelete', 'EventHook.validate')
   }
 
   static get dates () {
