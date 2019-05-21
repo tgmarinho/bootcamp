@@ -18,12 +18,12 @@ class EventController {
    * @param {object} ctx
    * @param {Request} ctx.request
    * @param {Response} ctx.response
-   * @param {View} ctx.view
    */
-  async index ({ request, response, view }) {
+  async index ({ request, response, auth }) {
     const { page } = request.get()
     const events = await Event.query()
       .with('user')
+      .where('user_id', auth.user.id)
       .orderByRaw('datetime DESC')
       .paginate(page)
 
@@ -46,7 +46,6 @@ class EventController {
         user_id: auth.user.id
       })
 
-      console.log(event.length)
       if (event.length) {
         return response.status(400).send({
           error: { message: 'Não pode inserir dois eventos em mesma data' }
@@ -72,7 +71,8 @@ class EventController {
   async show ({ params, request, response, auth }) {
     const event = await Event.findOrFail(params.id)
     await event.load('user')
-    if (event.user.id === auth.user.id) {
+
+    if (event.user_id === auth.user.id) {
       return event
     } else {
       return response.status(401).send({
@@ -94,7 +94,7 @@ class EventController {
 
     const event = await Event.findOrFail(params.id)
 
-    if (event.user.id === auth.user.id) {
+    if (event.user_id === auth.user.id) {
       event.merge(data)
       await event.save()
 
@@ -116,7 +116,7 @@ class EventController {
    */
   async destroy ({ params, response, auth }) {
     const event = await Event.findOrFail(params.id)
-    if (event.user.id === auth.user.id) {
+    if (event.user_id === auth.user.id) {
       await event.delete()
     } else {
       return response.status(401).send({
