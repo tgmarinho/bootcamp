@@ -27,4 +27,6 @@ Route.group(() => {
   Route.resource('/events', 'EventController')
     .validator('Event')
     .apiOnly()
+
+  Route.post('/share', 'ShareEventController.share')
 }).middleware(['auth'])
