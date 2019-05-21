@@ -84,7 +84,15 @@ class EventController {
    * @param {Request} ctx.request
    * @param {Response} ctx.response
    */
-  async update ({ params, request, response }) {}
+  async update ({ params, request, response }) {
+    const data = request.only(['user_id', 'title', 'location', 'datetime'])
+
+    const event = await Event.findOrFail(params.id)
+    event.merge(data)
+    await event.save()
+
+    return event
+  }
 
   /**
    * Delete a event with id.
@@ -94,7 +102,10 @@ class EventController {
    * @param {Request} ctx.request
    * @param {Response} ctx.response
    */
-  async destroy ({ params, request, response }) {}
+  async destroy ({ params }) {
+    const event = await Event.findOrFail(params.id)
+    await event.delete()
+  }
 }
 
 module.exports = EventController
