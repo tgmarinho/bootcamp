@@ -91,7 +91,7 @@ class TaskController {
    */
   async destroy ({ params }) {
     const task = await Task.findOrFail(params.id)
-    task.delete()
+    await task.delete()
   }
 }
 
