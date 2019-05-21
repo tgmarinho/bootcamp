@@ -1,7 +1,8 @@
 'use strict'
 
 const BaseExceptionHandler = use('BaseExceptionHandler')
-
+const Youch = use('Youch')
+const Env = use('Env')
 /**
  * This class handles all exceptions thrown during
  * the HTTP request lifecycle.
@@ -21,7 +22,17 @@ class ExceptionHandler extends BaseExceptionHandler {
    * @return {void}
    */
   async handle (error, { request, response }) {
-    response.status(error.status).send(error.message)
+    if (error.name === 'ValidationException') {
+      response.status(error.status).send(error.message)
+    }
+
+    if (Env.get('NODE_ENV') === 'development') {
+      const youch = Youch(error, request.request)
+      const errorJSON = await youch.toJSON()
+      return response.status(error.status).send(errorJSON)
+    }
+
+    return response.status(error.status)
   }
 
   /**
@@ -35,6 +46,7 @@ class ExceptionHandler extends BaseExceptionHandler {
    * @return {void}
    */
   async report (error, { request }) {
+    console.log(error) // configurar o sentry.io depois
   }
 }
 
