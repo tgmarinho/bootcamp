@@ -68,12 +68,17 @@ class EventController {
    * @param {object} ctx
    * @param {Request} ctx.request
    * @param {Response} ctx.response
-   * @param {View} ctx.view
    */
-  async show ({ params, request, response, view }) {
+  async show ({ params, request, response, auth }) {
     const event = await Event.findOrFail(params.id)
     await event.load('user')
-    return event
+    if (event.user.id === auth.user.id) {
+      return event
+    } else {
+      return response.status(401).send({
+        error: { message: 'Só o criador do evento pode vê-lo!' }
+      })
+    }
   }
 
   /**
@@ -84,14 +89,21 @@ class EventController {
    * @param {Request} ctx.request
    * @param {Response} ctx.response
    */
-  async update ({ params, request, response }) {
+  async update ({ params, request, response, auth }) {
     const data = request.only(['user_id', 'title', 'location', 'datetime'])
 
     const event = await Event.findOrFail(params.id)
-    event.merge(data)
-    await event.save()
 
-    return event
+    if (event.user.id === auth.user.id) {
+      event.merge(data)
+      await event.save()
+
+      return event
+    } else {
+      return response.status(401).send({
+        error: { message: 'Só o criador do evento pode alterá-lo!' }
+      })
+    }
   }
 
   /**
@@ -102,9 +114,15 @@ class EventController {
    * @param {Request} ctx.request
    * @param {Response} ctx.response
    */
-  async destroy ({ params }) {
+  async destroy ({ params, response, auth }) {
     const event = await Event.findOrFail(params.id)
-    await event.delete()
+    if (event.user.id === auth.user.id) {
+      await event.delete()
+    } else {
+      return response.status(401).send({
+        error: { message: 'Só o criador do evento pode deletá-lo!' }
+      })
+    }
   }
 }
 
