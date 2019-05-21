@@ -6,6 +6,7 @@
 
 const Event = use('App/Models/Event')
 const Database = use('Database')
+const moment = require('moment')
 
 /**
  * Resourceful controller for interacting with events
@@ -116,8 +117,15 @@ class EventController {
    */
   async destroy ({ params, response, auth }) {
     const event = await Event.findOrFail(params.id)
+
     if (event.user_id === auth.user.id) {
-      await event.delete()
+      if (moment(event.datetime).isAfter(moment())) {
+        await event.delete()
+      } else {
+        return response.status(401).send({
+          error: { message: 'Não é possivel excluir um evento passado.' }
+        })
+      }
     } else {
       return response.status(401).send({
         error: { message: 'Só o criador do evento pode deletá-lo!' }
