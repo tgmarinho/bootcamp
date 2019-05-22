@@ -1,0 +1,22 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<svg width="32px" height="32px" viewBox="0 0 32 32" version="1.1" xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink">
+    <!-- Generator: Sketch 50.2 (55047) - http://www.bohemiancoding.com/sketch -->
+    <title>Pause</title>
+    <desc>Created with Sketch.</desc>
+    <defs></defs>
+    <g id="Page-1" stroke="none" stroke-width="1" fill="none" fill-rule="evenodd">
+        <g id="Spotify" transform="translate(-703.000000, -814.000000)">
+            <g id="Client" transform="translate(159.000000, 149.000000)">
+                <g id="Lower-Bar" transform="translate(0.000000, 656.000000)">
+                    <g id="Center-Controls" transform="translate(453.000000, 9.000000)">
+                        <g id="Pause" transform="translate(91.000000, 0.000000)">
+                            <circle id="Oval-5" stroke="#979797" cx="16" cy="16" r="15.5"></circle>
+                            <rect id="Rectangle" fill="#FFFFFF" x="11" y="10" width="3" height="12"></rect>
+                            <rect id="Rectangle-Copy" fill="#FFFFFF" x="18" y="10" width="3" height="12"></rect>
+                        </g>
+                    </g>
+                </g>
+            </g>
+        </g>
+    </g>
+</svg>

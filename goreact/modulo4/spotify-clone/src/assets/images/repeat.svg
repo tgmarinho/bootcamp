@@ -1,0 +1,21 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<svg width="14px" height="12px" viewBox="0 0 14 12" version="1.1" xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink">
+    <!-- Generator: Sketch 50.2 (55047) - http://www.bohemiancoding.com/sketch -->
+    <title>Repeat</title>
+    <desc>Created with Sketch.</desc>
+    <defs></defs>
+    <g id="Page-1" stroke="none" stroke-width="1" fill="none" fill-rule="evenodd">
+        <g id="Spotify" transform="translate(-812.000000, -824.000000)" fill="#B3B3B3">
+            <g id="Client" transform="translate(159.000000, 149.000000)">
+                <g id="Lower-Bar" transform="translate(0.000000, 656.000000)">
+                    <g id="Center-Controls" transform="translate(453.000000, 9.000000)">
+                        <g id="Repeat" transform="translate(200.000000, 9.000000)">
+                            <path d="M13.2109,5.7659 C13.1399,5.4989 12.8699,5.3409 12.5989,5.4129 C12.3319,5.4849 12.1739,5.7589 12.2459,6.0259 C12.3239,6.3179 12.3639,6.6229 12.3639,6.9329 C12.3639,8.8619 10.7939,10.4329 8.8639,10.4329 L4.3639,10.4329 L4.3639,9.1039 L1.5359,10.9329 L4.3639,12.7609 L4.3639,11.4329 L8.8639,11.4329 C11.3459,11.4329 13.3639,9.4139 13.3639,6.9329 C13.3639,6.5359 13.3129,6.1429 13.2109,5.7659" id="Fill-1"></path>
+                            <path d="M1,6.8284 C1,4.8984 2.57,3.3284 4.5,3.3284 L9,3.3284 L9,4.6574 L11.828,2.8284 L9,0.9994 L9,2.3284 L4.5,2.3284 C2.019,2.3284 0,4.3474 0,6.8284 C0,7.2244 0.052,7.6174 0.153,7.9954 C0.213,8.2184 0.415,8.3654 0.636,8.3654 C0.679,8.3654 0.722,8.3594 0.766,8.3484 C1.032,8.2764 1.19,8.0014 1.118,7.7354 C1.04,7.4424 1,7.1374 1,6.8284" id="Fill-3"></path>
+                        </g>
+                    </g>
+                </g>
+            </g>
+        </g>
+    </g>
+</svg>
