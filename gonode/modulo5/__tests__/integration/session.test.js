@@ -78,4 +78,12 @@ describe("Authentication", () => {
 
     expect(response.status).toBe(401);
   });
+
+  it("shoud not be able to access private routes when not authtenticated", async () => {
+    const response = await request(app)
+      .get("/dashboard")
+      .set("Authorization", `Bearer 12321312qualquercoisa`);
+
+    expect(response.status).toBe(401);
+  });
 });
