@@ -9,8 +9,8 @@ export default createGlobalStyle`
   outline: 0;
 }
 body {
-  text-rendering: optimezeLegebility !important;
-  -webkit-font-smoothing: analiased !important;
+  text-rendering: optimizeLegibility !important;
+  -webkit-font-smoothing: antialiased !important;
   font-family: 'Arial', sans-serif;
 }
 `;
