@@ -10,6 +10,7 @@
     "express": "^4.17.0",
     "faker": "^4.1.0",
     "jsonwebtoken": "^8.5.1",
+    "nodemailer": "^6.1.1",
     "pg": "^7.11.0",
     "sequelize": "^5.8.6"
   },
