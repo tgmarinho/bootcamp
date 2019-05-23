@@ -6,7 +6,7 @@ export const Container = styled.header`
   display: flex;
   align-items: center;
   justify-content: space-between;
-  margin: 10px 20px 0;
+  margin: 10px 0 0;
 `;
 
 export const Search = styled.div`
