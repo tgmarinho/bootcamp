@@ -23,6 +23,12 @@
       "title": "Só elas",
       "description": "As melhores cantoras POP reunidas em uma playlist pra você.",
       "thumbnail": "https://s3-sa-east-1.amazonaws.com/gonative/linkin_park.jpg"
+    },
+    {
+      "id": 5,
+      "title": "Só as minhas",
+      "description": "trolei",
+      "thumbnail": "https://s3-sa-east-1.amazonaws.com/gonative/linkin_park.jpg"
     }
   ],
   "songs": [

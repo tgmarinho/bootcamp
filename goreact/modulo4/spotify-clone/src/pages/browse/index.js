@@ -33,7 +33,7 @@ class Browse extends Component {
         <Title>Navegar {this.props.playlists.loading && <Loading />}</Title>
         <List>
           {this.props.playlists.data.map(playlist => (
-            <Playlist key={playlist.id} to={`/playlists/${playlist.id}1`}>
+            <Playlist key={playlist.id} to={`/playlists/${playlist.id}`}>
               <img src={playlist.thumbnail} alt={playlist.title} />
               <strong>{playlist.title}</strong>
               <p>{playlist.description}</p>
