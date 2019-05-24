@@ -5,7 +5,7 @@ import { Link } from 'react-router-dom';
 import PropTypes from 'prop-types';
 import { Creators as PlaylistsActions } from '../../store/ducks/playlists';
 import { Container, NewPlaylist, Nav } from './styles';
-
+import Loading from '../Loading';
 import AddPlaylistIcon from '../../assets/images/add_playlist.svg';
 
 class SideBar extends Component {
@@ -16,6 +16,7 @@ class SideBar extends Component {
         id: PropTypes.number,
         title: PropTypes.string,
       }),
+      loading: PropTypes.bool.isRequired,
     }).isRequired,
   };
 
@@ -72,6 +73,7 @@ class SideBar extends Component {
           <Nav>
             <li>
               <span>PLAYLIST</span>
+              {this.props.playlists.loading && <Loading />}
             </li>
             {this.props.playlists.data.map(playlist => (
               <li key={playlist.id}>
