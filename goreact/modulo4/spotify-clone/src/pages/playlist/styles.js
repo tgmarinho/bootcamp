@@ -97,8 +97,28 @@ export const SongList = styled.table`
       text-align: right;
     }
   }
+`;
 
-  tbody tr:hover td {
+export const SongItem = styled.tr`
+  td {
+    border-top: 1px solid #282828;
+    font-size: 13px;
+    padding: 0 10px;
+    line-height: 40px;
+    background: ${props => (props.selected ? '#282828' : 'transparent')};
+    color: ${props => (props.playing ? '#1ed760' : '#FFF')};
+
+    &:first-child {
+      width: 80px;
+      text-align: right;
+    }
+
+    &:last-child {
+      text-align: right;
+    }
+  }
+
+  &:hover td {
     background: #282828;
   }
 `;

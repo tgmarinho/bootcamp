@@ -5,7 +5,9 @@ import { bindActionCreators } from 'redux';
 import { Creators as PlaylistDetailsActions } from '../../store/ducks/playlistDetails';
 import { Creators as PlayerActions } from '../../store/ducks/player';
 import Loading from '../../components/Loading';
-import { Container, Header, SongList } from './styles';
+import {
+  Container, Header, SongList, SongItem,
+} from './styles';
 import ClockIcon from '../../assets/images/clock.svg';
 import PlusIcon from '../../assets/images/plus.svg';
 
@@ -32,6 +34,11 @@ class Playlist extends Component {
     }).isRequired,
     loading: PropTypes.bool.isRequired,
     loadSong: PropTypes.func.isRequired,
+    currentSong: PropTypes.shape({ id: PropTypes.number }).isRequired,
+  };
+
+  state = {
+    selectedSong: null,
   };
 
   componentDidMount() {
@@ -77,7 +84,13 @@ class Playlist extends Component {
             songs
             {playlistDetails.songs && playlistDetails.songs.length ? (
               playlistDetails.songs.map(song => (
-                <tr key={song.id} onDoubleClick={() => this.props.loadSong(song)}>
+                <SongItem
+                  selected={this.state.selectedSong === song.id}
+                  key={song.id}
+                  onClick={() => this.setState({ selectedSong: song.id })}
+                  onDoubleClick={() => this.props.loadSong(song)}
+                  playing={this.props.currentSong && this.props.currentSong.id === song.id}
+                >
                   <td>
                     <img src={PlusIcon} alt={song.title} />
                   </td>
@@ -85,7 +98,7 @@ class Playlist extends Component {
                   <td>{song.author}</td>
                   <td>{song.album}</td>
                   <td>4.34</td>
-                </tr>
+                </SongItem>
               ))
             ) : (
               <tr>
@@ -113,6 +126,7 @@ class Playlist extends Component {
 
 const mapStateToProps = state => ({
   playlistDetails: state.playlistDetails,
+  currentSong: state.player.currentSong,
 });
 
 const mapDispatchToProps = dispatch => bindActionCreators({ ...PlaylistDetailsActions, ...PlayerActions }, dispatch);
