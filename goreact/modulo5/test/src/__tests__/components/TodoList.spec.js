@@ -22,3 +22,30 @@ it("should be able to add new todo", () => {
 
   expect(wrapper.find("ul").contains(<li>Novo Todo</li>)).toBe(true);
 });
+
+it("should add new todos to local storage", () => {
+  const setItemMock = jest.fn();
+
+  global.localStorage.__proto__.getItem = jest.fn().mockReturnValue("[]");
+  global.localStorage.__proto__.setItem = setItemMock;
+
+  const wrapper = mount(<TodoList />);
+
+  wrapper.setState({ newTodo: "novo todo" });
+  wrapper.instance().handleAddTodo();
+
+  expect(localStorage.setItem).toHaveBeenLastCalledWith(
+    "todos",
+    JSON.stringify(["novo todo"])
+  );
+});
+
+it("should load todos in componentDidMount", () => {
+  const getItemMock = jest.fn().mockReturnValue(JSON.stringify(["Fazer Café"]));
+
+  global.localStorage.__proto__.getItem = getItemMock;
+
+  const wrapper = mount(<TodoList />);
+
+  expect(wrapper.state("todos")).toEqual(["Fazer Café"]);
+});
