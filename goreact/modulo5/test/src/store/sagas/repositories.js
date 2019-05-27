@@ -1,11 +1,11 @@
 import { call, put } from "redux-saga/effects";
-import axios from "axios";
+import api from "../../services/api";
 import { Creators as RepositoriesActions } from "../ducks/repositories";
 
 export function* getRepositories() {
   try {
     const response = yield call(
-      axios.get,
+      api.get,
       "https://api.github.com/users/tgmarinho/repos"
     );
 
