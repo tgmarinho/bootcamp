@@ -11,6 +11,7 @@
     "react": "16.8.3",
     "react-native": "0.59.8",
     "react-native-gesture-handler": "^1.2.1",
+    "react-native-iphone-x-helper": "^1.2.0",
     "react-navigation": "^3.11.0",
     "react-redux": "^7.0.3",
     "reactotron-react-native": "^3.5.0",
