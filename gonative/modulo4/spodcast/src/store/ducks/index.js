@@ -1,7 +1,7 @@
 import { combineReducers } from 'redux';
 
-// import { addUser } from './addUser';
+import { reducer as podcasts } from './podcasts';
 
 export default combineReducers({
-  test: () => [],
+  podcasts,
 });
