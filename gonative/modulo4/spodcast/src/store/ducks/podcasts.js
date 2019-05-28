@@ -6,7 +6,7 @@ import Immutable from 'seamless-immutable';
  */
 const { Types, Creators } = createActions({
   loadRequest: null,
-  loadSuccess: ['Data'],
+  loadSuccess: ['data'],
   loadFailure: null,
 });
 
