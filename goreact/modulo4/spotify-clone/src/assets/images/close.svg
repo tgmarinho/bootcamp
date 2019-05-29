@@ -1,14 +1,2 @@
-<?xml version="1.0" encoding="UTF-8"?>
-<svg width="11px" height="11px" viewBox="0 0 11 11" version="1.1" xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink">
-    <!-- Generator: Sketch 50.2 (55047) - http://www.bohemiancoding.com/sketch -->
-    <title>times - FontAwesome</title>
-    <desc>Created with Sketch.</desc>
-    <defs></defs>
-    <g id="Page-1" stroke="none" stroke-width="1" fill="none" fill-rule="evenodd" fill-opacity="0.3" font-family="FontAwesome" font-size="14" font-weight="normal">
-        <g id="Artboard" transform="translate(-170.000000, -70.000000)" fill="#000000">
-            <text id="times---FontAwesome">
-                <tspan x="170" y="80"></tspan>
-            </text>
-        </g>
-    </g>
-</svg>
+<?xml version="1.0" encoding="utf-8"?>
+<svg width="1792" height="1792" viewBox="0 0 1792 1792" xmlns="http://www.w3.org/2000/svg"><path d="M1490 1322q0 40-28 68l-136 136q-28 28-68 28t-68-28l-294-294-294 294q-28 28-68 28t-68-28l-136-136q-28-28-28-68t28-68l294-294-294-294q-28-28-28-68t28-68l136-136q28-28 68-28t68 28l294 294 294-294q28-28 68-28t68 28l136 136q28 28 28 68t-28 68l-294 294 294 294q28 28 28 68z"/></svg>
