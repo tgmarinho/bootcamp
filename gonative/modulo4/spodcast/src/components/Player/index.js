@@ -14,7 +14,7 @@ import {
 } from './styles';
 
 const Player = ({
-  player, currentEpisode, play, pause, prev, next
+  player, currentEpisode, play, pause, prev, next,
 }) => player.current && (
 <Container>
   <CoverBackground source={{ uri: currentEpisode.artwork }} />
