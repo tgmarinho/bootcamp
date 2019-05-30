@@ -22,10 +22,6 @@ import {
 } from './styles';
 
 class Podcast extends Component {
-  componentDidMount() {
-    console.tron.log(this.props);
-  }
-
   handleBack = () => {
     const { navigation } = this.props;
     navigation.goBack();

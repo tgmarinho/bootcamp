@@ -12,11 +12,9 @@ export function* init() {
 
 export function* setPodcast({ podcast, episodeId }) {
   const currentPodcast = yield select(state => state.player.podcast);
-
   if (!currentPodcast || podcast.id !== currentPodcast.id) {
     yield call(TrackPlayer.stop);
     yield call(TrackPlayer.reset);
-
     yield call(TrackPlayer.add, [...podcast.tracks]);
     yield put(PlayerActions.setPodcastSuccess(podcast));
   }
