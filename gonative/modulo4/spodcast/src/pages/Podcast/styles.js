@@ -65,18 +65,21 @@ export const Episode = styled.TouchableOpacity.attrs({
 
 export const Title = styled.Text`
   font-size: 16px;
-  color: #fff;
+  color: ${({ active }) => (active ? '#1db954' : '#fff')};
 `;
 
 export const Author = styled.Text`
-  color: #c4c4c4;
+  color: ${({ active }) => (active ? '#1db954' : '#c4c4c4')};
   font-size: 16px;
   margin-top: 3px;
 `;
 
 export const BackButton = styled.TouchableOpacity.attrs({
   hitSlop: {
-    top: 5, left: 5, right: 5, bottom: 5,
+    top: 5,
+    left: 5,
+    right: 5,
+    bottom: 5,
   },
 })`
   position: absolute;
