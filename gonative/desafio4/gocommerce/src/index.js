@@ -1,9 +1,8 @@
 import '~/config/ReactotronConfig';
 import '~/config/StatusBarConfig';
 import React from 'react';
+import Routes from './routes';
 
-import { View } from 'react-native';
-
-const App = () => <View />;
+const App = () => <Routes />;
 
 export default App;
