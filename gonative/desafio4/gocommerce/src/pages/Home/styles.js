@@ -1,26 +1,32 @@
 import styled from 'styled-components/native';
 
 export const Container = styled.View`
-  flex: 1;
+  /* flex: 1; */
 `;
 
 export const Categories = styled.ScrollView.attrs({
   horizontal: true,
+  showsHorizontalScrollIndicator: false,
 })`
-  /* flex: 1; */
-  /* flex-direction: row; */
-  /* justify-content: center; */
-  /* height: 30px; */
+  padding: 10px;
+  padding-bottom: 0px;
   background: #e79799;
 `;
 
-export const Category = styled.Text`
+export const CategoryButton = styled.TouchableOpacity`
+  flex: 1;
+  height: 30px;
+  margin: 5px;
+  margin-bottom: 0px;
+  border-color: ${({ active }) => (active === 'camisetas' ? '#FFF' : '#e79799')};
+  border-bottom-width: 5px;
+`;
+
+export const CategoryLabel = styled.Text`
+  color: ${({ active }) => (active === 'camisetas' ? '#FFF' : '#ddd')};
   font-size: 16px;
   font-weight: bold;
   text-transform: uppercase;
-  color: #fff;
-  margin: 5px;
-  border-bottom-width: 20px;
 `;
 
 export const Content = styled.View`
