@@ -1,18 +1,17 @@
 import styled from 'styled-components';
-import { getStatusBarHeight } from 'react-native-status-bar-height';
+import { getStatusBarHeight } from 'react-native-iphone-x-helper';
 
 export const Container = styled.View`
-  height: 54 + getStatusBarHeight();
-  padding-top: getStatusBarHeight();
-
-  flex: 1;
+  height: ${54 + getStatusBarHeight()}px;
+  padding-top: ${getStatusBarHeight()}px;
   flex-direction: row;
-  justify-content: space-between;
   align-items: center;
+  justify-content: center;
+  background: #fff;
 `;
 
 export const Title = styled.Text`
   font-size: 16;
   font-weight: bold;
-  color: #fff;
+  color: #e79799;
 `;
