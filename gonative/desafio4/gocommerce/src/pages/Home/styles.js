@@ -16,7 +16,7 @@ export const Categories = styled.ScrollView.attrs({
 export const CategoryButton = styled.TouchableOpacity`
   flex: 1;
   height: 30px;
-  margin: 5px;
+  margin: 10px;
   margin-bottom: 0px;
   border-color: ${({ active }) => (active === 'camisetas' ? '#FFF' : '#e79799')};
   border-bottom-width: 5px;
@@ -29,26 +29,34 @@ export const CategoryLabel = styled.Text`
   text-transform: uppercase;
 `;
 
-export const Content = styled.View`
-  flex: 1;
-  flex-direction: row;
-  justify-content: center;
-  flex-wrap: wrap;
+export const ProductsList = styled.FlatList.attrs({
+  contentContainerStyle: {
+    marginTop: 10,
+    paddingBottom: 30,
+    flexDirection: 'row',
+    justifyContent: 'center',
+    flexWrap: 'wrap',
+  },
+})`
   background-color: #eee;
 `;
-export const Product = styled.View`
+
+export const Product = styled.TouchableOpacity.attrs({
+  activeOpacity: 0.6,
+})`
+  padding: 0 20px;
   margin: 5px;
-  padding: 5px;
-  width: 45%;
-  height: 300px;
+  padding-bottom: 10px;
+  width: 150px;
   background-color: #fff;
 `;
-export const Imagem = styled.Image`
+
+export const Image = styled.Image`
   width: 150;
   height: 150;
   align-self: center;
 `;
-export const Title = styled.Text`
+export const Name = styled.Text`
   margin-top: 10px;
   font-size: 16px;
   font-weight: bold;
@@ -61,6 +69,6 @@ export const Brand = styled.Text`
 export const Price = styled.Text`
   margin-top: 10px;
   font-size: 16px;
-  color: #8dd9c8;
+  color: #4f8b7d;
   font-weight: bold;
 `;

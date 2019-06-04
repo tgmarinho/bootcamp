@@ -7,7 +7,7 @@ import { Container, Title } from './styles';
 
 const Header = ({ title, navigation }) => (
   <Container>
-    {/* <StatusBar barStyle="dark-content" /> */}
+    <StatusBar barStyle="dark-content" />
     <Title>{title}</Title>
   </Container>
 );
