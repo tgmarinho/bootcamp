@@ -1,19 +1,27 @@
 import React from 'react';
-import { createAppContainer, createBottomTabNavigator } from 'react-navigation';
+import {
+  createAppContainer,
+  createBottomTabNavigator,
+  createStackNavigator,
+} from 'react-navigation';
 import Icon from 'react-native-vector-icons/FontAwesome';
 
 import Home from '~/pages/Home';
 import Cart from '~/pages/Cart';
+import ProductDetail from '~/pages/ProductDetail';
 
 const Routes = createAppContainer(
   createBottomTabNavigator(
     {
-      Home: {
-        screen: Home,
-        navigationOptions: {
-          tabBarIcon: ({ tintColor }) => <Icon name="home" size={24} color={tintColor} />,
+      Home: createStackNavigator(
+        { Home, ProductDetail },
+        {
+          screen: Home,
+          navigationOptions: {
+            tabBarIcon: ({ tintColor }) => <Icon name="home" size={24} color={tintColor} />,
+          },
         },
-      },
+      ),
       Cart: {
         screen: Cart,
         navigationOptions: {
@@ -22,8 +30,8 @@ const Routes = createAppContainer(
       },
     },
     {
+      initialRouteName: 'Cart',
       tabBarOptions: {
-        showIcon: true,
         showLabel: false,
         activeTintColor: '#E89A9D',
         inactiveTintColor: '#e0e0e0',

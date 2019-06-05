@@ -13,7 +13,7 @@ const Header = ({ title, navigation }) => (
     <StatusBar barStyle="dark-content" />
     {navigation.state.key !== 'Repositories' ? (
       <TouchableOpacity onPress={() => navigation.navigate('Repositories')}>
-        <Icon name="chevron-left" sinze={16} style={styles.icon} />
+        <Icon name="chevron-left" size={16} style={styles.icon} />
       </TouchableOpacity>
     ) : (
       <View style={styles.left} />
