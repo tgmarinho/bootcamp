@@ -3,6 +3,7 @@ import styled from 'styled-components/native';
 export const Container = styled.View`
   flex: 1;
   background: #eee;
+  justify-content: space-between;
   /* margin: 20px; */
 `;
 
@@ -51,7 +52,6 @@ export const Quantity = styled.TextInput.attrs({
   underlineColorAndroid: 'transparent',
   placeholderTextColor: '#999',
 })`
-  /* flex: 1; */
   height: 30px;
   background: #fff;
   border: 1px;
@@ -65,8 +65,22 @@ export const Delete = styled.View`
   margin-left: 15px;
 `;
 
-export const SubTotal = styled.Text``;
+export const SubTotal = styled.View`
+  height: 100px;
+  background: #fff;
+  justify-content: center;
+  align-items: center;
+`;
 
-export const Total = styled.Text``;
+export const Title = styled.Text`
+  font-size: 14px;
+  color: #4f8b7d;
+  font-weight: normal;
+`;
 
-export const Title = styled.Text``;
+export const Total = styled.Text`
+  margin-top: 10px;
+  font-size: 18px;
+  color: #4f8b7d;
+  font-weight: bold;
+`;
