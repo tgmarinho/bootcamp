@@ -14,7 +14,9 @@ export const Product = styled.View`
   align-items: center;
 `;
 
-export const Image = styled.Image`
+export const Image = styled.Image.attrs({
+  resizeMode: 'contain',
+})`
   width: 250;
   height: 250;
 `;

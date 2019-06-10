@@ -13,7 +13,9 @@ export const Content = styled.View`
   background: #fff;
 `;
 
-export const Image = styled.Image`
+export const Image = styled.Image.attrs({
+  resizeMode: 'contain',
+})`
   height: 80%;
   width: 10%;
 `;

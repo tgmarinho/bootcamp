@@ -30,7 +30,7 @@ const Routes = createAppContainer(
       },
     },
     {
-      initialRouteName: 'Cart',
+      initialRouteName: 'Home',
       tabBarOptions: {
         showLabel: false,
         activeTintColor: '#E89A9D',

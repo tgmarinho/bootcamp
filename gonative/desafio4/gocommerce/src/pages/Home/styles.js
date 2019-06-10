@@ -18,12 +18,12 @@ export const CategoryButton = styled.TouchableOpacity`
   height: 30px;
   margin: 10px;
   margin-bottom: 0px;
-  border-color: ${({ active }) => (active === 'camisetas' ? '#FFF' : '#e79799')};
+  border-color: ${({ active }) => (active ? '#FFF' : '#e79799')};
   border-bottom-width: 5px;
 `;
 
 export const CategoryLabel = styled.Text`
-  color: ${({ active }) => (active === 'camisetas' ? '#FFF' : '#ddd')};
+  color: ${({ active }) => (active ? '#FFF' : '#ddd')};
   font-size: 16px;
   font-weight: bold;
   text-transform: uppercase;
@@ -51,9 +51,11 @@ export const Product = styled.TouchableOpacity.attrs({
   background-color: #fff;
 `;
 
-export const Image = styled.Image`
-  width: 150;
-  height: 150;
+export const Image = styled.Image.attrs({
+  resizeMode: 'contain',
+})`
+  height: 160;
+  width: 100%;
   align-self: center;
 `;
 export const Name = styled.Text`
