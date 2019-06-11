@@ -1,5 +1,8 @@
-import React from 'react'
+import React from 'react';
 import Icon from 'react-native-vector-icons/FontAwesome';
+import { connect } from 'react-redux';
+import { bindActionCreators } from 'redux';
+import CartActions from '~/store/ducks/cart';
 
 import {
   Container,
@@ -12,37 +15,44 @@ import {
   Actions,
   Quantity,
   Delete,
-  
 } from './styles';
 
-const CartItem = () => {
-
-  return (
-   
-    <Content>
-      <Image
-        source={{
-          uri:
-            'https://t-static.dafiti.com.br/czCvp3wBNPfehf7omYZfJacnxPY=/fit-in/427x620/dafitistatic-a.akamaihd.net%2fp%2fquiksilver-camiseta-quiksilver-hyperas-preta-8710-7136243-1-product.jpg',
+const CartItem = ({
+  product, deleteToCart, updateToCart, updateSubTotal,
+}) => (
+  <Content>
+    <Image
+      source={{
+        uri: product.image,
+      }}
+    />
+    <Box>
+      <ProductName>{product.name}</ProductName>
+      <Brand>{product.brand}</Brand>
+      <Price>{product.price}</Price>
+    </Box>
+    <Actions>
+      <Quantity
+        onChangeText={(value) => {
+          updateToCart(product.id, value);
+          updateSubTotal();
         }}
       />
-      <Box>
-        <ProductName>Camiseta Huasda Preta</ProductName>
-        <Brand>Quiclosilver</Brand>
-        <Price>50,00</Price>
-      </Box>
-      <Actions>
-        <Quantity />
-        <Delete onPress={() => {}}>
-          <Icon name="remove" size={14} color="#999" />
-        </Delete>
-      </Actions>
-    </Content>
-  
- 
-  )
-}
+      <Delete
+        onPress={() => {
+          deleteToCart(product.id);
+          updateSubTotal();
+        }}
+      >
+        <Icon name="remove" size={14} color="#999" />
+      </Delete>
+    </Actions>
+  </Content>
+);
 
+const mapDispatchToProps = dispatch => bindActionCreators(CartActions, dispatch);
 
-
-export default CartItem;
+export default connect(
+  null,
+  mapDispatchToProps,
+)(CartItem);

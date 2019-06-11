@@ -1,5 +1,8 @@
 import React, { Fragment, Component } from 'react';
 import { withNavigation } from 'react-navigation';
+import { connect } from 'react-redux';
+import { bindActionCreators } from 'redux';
+import CartActions from '~/store/ducks/cart';
 
 import {
   Container,
@@ -24,8 +27,11 @@ class ProductDetail extends Component {
   };
 
   render() {
-    console.tron.log(this.props);
-    const product = this.props.navigation.getParam('product');
+    const {
+      navigation, addToCart, updateSubTotal, products,
+    } = this.props;
+    console.tron.log('PRODUTOS: ', products);
+    const product = navigation.getParam('product');
     return (
       <Fragment>
         <Container>
@@ -39,7 +45,12 @@ class ProductDetail extends Component {
               <Price>{product.price}</Price>
             </Content>
 
-            <AddToCart>
+            <AddToCart
+              onPress={() => {
+                addToCart(product);
+                updateSubTotal();
+              }}
+            >
               <AddToCartLabel>Adicionar ao carrinho</AddToCartLabel>
             </AddToCart>
           </Product>
@@ -49,4 +60,13 @@ class ProductDetail extends Component {
   }
 }
 
-export default withNavigation(ProductDetail);
+const mapStateToProps = state => ({
+  products: state.cart.products,
+});
+
+const mapDispatchToProps = dispatch => bindActionCreators(CartActions, dispatch);
+
+export default connect(
+  null,
+  mapDispatchToProps,
+)(withNavigation(ProductDetail));

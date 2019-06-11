@@ -1,7 +1,5 @@
 import styled from 'styled-components/native';
 
-
-
 export const Content = styled.View`
   margin: 13px;
   height: 100px;
@@ -49,6 +47,7 @@ export const Quantity = styled.TextInput.attrs({
   placeholder: '1',
   underlineColorAndroid: 'transparent',
   placeholderTextColor: '#999',
+  keyboardType: 'numeric',
 })`
   height: 30px;
   background: #fff;
@@ -59,7 +58,6 @@ export const Quantity = styled.TextInput.attrs({
   padding: 5px;
 `;
 
-export const Delete = styled.View`
+export const Delete = styled.TouchableOpacity`
   margin-left: 15px;
 `;
-
