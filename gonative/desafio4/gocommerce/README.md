@@ -23,3 +23,6 @@ A interface da aplicação será como a seguinte:
 - http://localhost:3000/category_products/1 (Busca produtos pelo ID da categoria)
 - http://localhost:3000/products/1 (Busca detalhes do produto pelo ID)
 
+## Video com a solução:
+
+![Video](https://youtu.be/HUKkTXnpKEs)
