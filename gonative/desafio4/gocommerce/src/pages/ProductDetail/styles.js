@@ -1,8 +1,9 @@
 import styled from 'styled-components/native';
 
 export const Container = styled.View`
+  flex: 1;
   background-color: #eee;
-  padding: 10px;
+  padding: 20px;
 `;
 
 export const Product = styled.View`
@@ -45,11 +46,6 @@ export const AddToCart = styled.TouchableOpacity`
   width: 100%;
 `;
 
-export const AddToCartLabel = styled.Text`
-  color: #fff;
-  font-weight: bold;
-`;
-
 export const Content = styled.View`
   flex-direction: row;
   justify-content: space-between;
@@ -58,4 +54,9 @@ export const Content = styled.View`
 
 export const Box = styled.View`
   flex: 1;
+`;
+
+export const AddToCartLabel = styled.Text`
+  color: #fff;
+  font-weight: bold;
 `;

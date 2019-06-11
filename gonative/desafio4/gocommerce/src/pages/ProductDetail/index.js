@@ -1,4 +1,5 @@
 import React, { Fragment, Component } from 'react';
+import PropTypes from 'prop-types';
 import { withNavigation } from 'react-navigation';
 import { connect } from 'react-redux';
 import { bindActionCreators } from 'redux';
@@ -27,9 +28,7 @@ class ProductDetail extends Component {
   };
 
   render() {
-    const {
-      navigation, addToCart, updateSubTotal, products,
-    } = this.props;
+    const { navigation, addToCart, updateSubTotal } = this.props;
 
     const product = navigation.getParam('product');
     return (
@@ -59,6 +58,12 @@ class ProductDetail extends Component {
     );
   }
 }
+
+ProductDetail.propTypes = {
+  navigation: PropTypes.shape({ navigation: PropTypes.func }).isRequired,
+  addToCart: PropTypes.func.isRequired,
+  updateSubTotal: PropTypes.func.isRequired,
+};
 
 const mapDispatchToProps = dispatch => bindActionCreators(CartActions, dispatch);
 

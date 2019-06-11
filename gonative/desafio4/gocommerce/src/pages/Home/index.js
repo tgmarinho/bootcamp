@@ -1,4 +1,5 @@
 import React, { Component } from 'react';
+import PropTypes from 'prop-types';
 import { withNavigation } from 'react-navigation';
 import { connect } from 'react-redux';
 import { bindActionCreators } from 'redux';
@@ -78,6 +79,8 @@ class Home extends Component {
           <ProductsList
             data={productsByCategory}
             keyExtractor={product => String(product.id)}
+            numColumns={2}
+            showsVerticalScrollIndicator={false}
             renderItem={({ item: product }) => (
               <Product onPress={() => navigation.navigate('ProductDetail', { product })}>
                 <Image source={{ uri: product.image }} />
@@ -92,6 +95,29 @@ class Home extends Component {
     );
   }
 }
+
+Home.propTypes = {
+  loadCategoryRequest: PropTypes.func.isRequired,
+  loadProductsByCategoryRequest: PropTypes.func.isRequired,
+  categories: PropTypes.arrayOf(
+    PropTypes.shape({
+      id: PropTypes.number,
+      title: PropTypes.string,
+    }),
+  ).isRequired,
+  loadingCategories: PropTypes.bool.isRequired,
+  loadingProducts: PropTypes.bool.isRequired,
+  productsByCategory: PropTypes.arrayOf(
+    PropTypes.shape({
+      id: PropTypes.number,
+      name: PropTypes.string,
+      image: PropTypes.string,
+      brand: PropTypes.string,
+      price: PropTypes.number,
+    }),
+  ).isRequired,
+  navigation: PropTypes.shape({ navigate: PropTypes.func }).isRequired,
+};
 
 const mapStateToProps = state => ({
   categories: state.categories.data,

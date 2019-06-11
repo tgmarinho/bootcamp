@@ -31,11 +31,12 @@ export const CategoryLabel = styled.Text`
 
 export const ProductsList = styled.FlatList.attrs({
   contentContainerStyle: {
-    marginTop: 10,
+    paddingTop: 10,
     paddingBottom: 30,
-    flexDirection: 'row',
-    justifyContent: 'center',
-    flexWrap: 'wrap',
+  },
+  columnWrapperStyle: {
+    marginHorizontal: 10,
+    justifyContent: 'space-between',
   },
 })`
   background-color: #eee;

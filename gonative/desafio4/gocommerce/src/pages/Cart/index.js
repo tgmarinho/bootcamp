@@ -1,4 +1,5 @@
 import React, { Component, Fragment } from 'react';
+import PropTypes from 'prop-types';
 import { connect } from 'react-redux';
 import Icon from 'react-native-vector-icons/FontAwesome';
 
@@ -41,6 +42,11 @@ class Cart extends Component {
     );
   }
 }
+
+Cart.propTypes = {
+  products: PropTypes.arrayOf(PropTypes.object).isRequired,
+  subTotal: PropTypes.number.isRequired,
+};
 
 const mapStateToProps = state => ({
   products: state.cart.products,

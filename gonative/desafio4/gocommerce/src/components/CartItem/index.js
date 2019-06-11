@@ -1,4 +1,5 @@
 import React from 'react';
+import PropTypes from 'prop-types';
 import Icon from 'react-native-vector-icons/FontAwesome';
 import { connect } from 'react-redux';
 import { bindActionCreators } from 'redux';
@@ -48,6 +49,19 @@ const CartItem = ({
     </Actions>
   </Content>
 );
+
+CartItem.propTypes = {
+  product: PropTypes.shape({
+    id: PropTypes.number,
+    name: PropTypes.string,
+    image: PropTypes.string,
+    brand: PropTypes.string,
+    price: PropTypes.number,
+  }).isRequired,
+  deleteToCart: PropTypes.func.isRequired,
+  updateToCart: PropTypes.func.isRequired,
+  updateSubTotal: PropTypes.func.isRequired,
+};
 
 const mapDispatchToProps = dispatch => bindActionCreators(CartActions, dispatch);
 
