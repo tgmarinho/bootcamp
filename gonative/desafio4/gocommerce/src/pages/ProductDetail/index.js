@@ -30,7 +30,7 @@ class ProductDetail extends Component {
     const {
       navigation, addToCart, updateSubTotal, products,
     } = this.props;
-    console.tron.log('PRODUTOS: ', products);
+
     const product = navigation.getParam('product');
     return (
       <Fragment>

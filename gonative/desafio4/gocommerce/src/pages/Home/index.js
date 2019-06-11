@@ -32,7 +32,6 @@ class Home extends Component {
   };
 
   componentDidMount() {
-    console.tron.log(this.props);
     const { loadCategoryRequest, loadProductsByCategoryRequest } = this.props;
     loadCategoryRequest();
     loadProductsByCategoryRequest(1);

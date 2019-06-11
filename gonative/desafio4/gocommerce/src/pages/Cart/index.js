@@ -1,7 +1,5 @@
 import React, { Component, Fragment } from 'react';
 import { connect } from 'react-redux';
-import { bindActionCreators } from 'redux';
-import CartActions from '~/store/ducks/cart';
 import Icon from 'react-native-vector-icons/FontAwesome';
 
 import {
