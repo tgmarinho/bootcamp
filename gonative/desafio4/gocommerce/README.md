@@ -25,5 +25,5 @@ A interface da aplicação será como a seguinte:
 
 ## Video com a solução (https://youtu.be/HUKkTXnpKEs):
 
-[![Veja o vídeo](https://github.com/tgmarinho/bootcamp/tree/master/gonative/desafio4/gocommerce/gommerce.png)](https://youtu.be/HUKkTXnpKEs)
+[![Veja o vídeo](https://github.com/tgmarinho/bootcamp/raw/master/gonative/desafio4/gocommerce/gocommerce.png)](https://youtu.be/HUKkTXnpKEs)
 
