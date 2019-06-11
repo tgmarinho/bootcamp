@@ -5,7 +5,6 @@ import { bindActionCreators } from 'redux';
 import CartActions from '~/store/ducks/cart';
 
 import {
-  Container,
   Content,
   Image,
   Box,
@@ -29,7 +28,7 @@ const CartItem = ({
     <Box>
       <ProductName>{product.name}</ProductName>
       <Brand>{product.brand}</Brand>
-      <Price>{product.price}</Price>
+      <Price>{`R$ ${product.price}`}</Price>
     </Box>
     <Actions>
       <Quantity

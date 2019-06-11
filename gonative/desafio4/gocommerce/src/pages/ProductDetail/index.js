@@ -42,7 +42,7 @@ class ProductDetail extends Component {
                 <Name>{product.name}</Name>
                 <Brand>{product.brand}</Brand>
               </Box>
-              <Price>{product.price}</Price>
+              <Price>{`R$ ${product.price}`}</Price>
             </Content>
 
             <AddToCart
@@ -59,10 +59,6 @@ class ProductDetail extends Component {
     );
   }
 }
-
-const mapStateToProps = state => ({
-  products: state.cart.products,
-});
 
 const mapDispatchToProps = dispatch => bindActionCreators(CartActions, dispatch);
 

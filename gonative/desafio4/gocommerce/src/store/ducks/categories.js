@@ -18,11 +18,12 @@ export default Creators;
  */
 export const INITIAL_STATE = Immutable({
   data: [],
+  loading: true,
 });
 
 /**
  * Reducer
  */
 export const reducer = createReducer(INITIAL_STATE, {
-  [Types.LOAD_CATEGORY_SUCCESS]: (state, { data }) => state.merge({ data }),
+  [Types.LOAD_CATEGORY_SUCCESS]: (state, { data }) => state.merge({ data, loading: false }),
 });

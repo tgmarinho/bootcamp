@@ -1,6 +1,5 @@
 import { createReducer, createActions } from 'reduxsauce';
 import Immutable from 'seamless-immutable';
-import { nullLiteral } from '@babel/types';
 
 /**
  * Action Types && Creators
@@ -20,7 +19,7 @@ export default Creators;
  */
 export const INITIAL_STATE = Immutable({
   products: [],
-  subTotal: null,
+  subTotal: 0,
 });
 
 /**

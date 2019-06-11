@@ -44,10 +44,11 @@ export const ProductsList = styled.FlatList.attrs({
 export const Product = styled.TouchableOpacity.attrs({
   activeOpacity: 0.6,
 })`
-  padding: 0 20px;
+  border-radius: 4px;
+  padding: 0 10px;
   margin: 5px;
   padding-bottom: 10px;
-  width: 150px;
+  width: 170px;
   background-color: #fff;
 `;
 

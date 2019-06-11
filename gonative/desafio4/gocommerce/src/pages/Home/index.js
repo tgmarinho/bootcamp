@@ -18,6 +18,8 @@ import {
   CategoryLabel,
 } from './styles';
 
+import Loading from '~/components/Loading';
+
 class Home extends Component {
   static navigationOptions = {
     title: 'GoCommerce',
@@ -38,54 +40,65 @@ class Home extends Component {
 
   handleClick = (id) => {
     this.setState({ categorySelected: id });
-    const { loadCategoryRequest, loadProductsByCategoryRequest } = this.props;
+    const { loadProductsByCategoryRequest } = this.props;
     loadProductsByCategoryRequest(id);
   };
 
   render() {
     const {
       categories,
+      loadingCategories,
+      loadingProducts,
       productsByCategory,
       navigation,
-      loadProductsByCategoryRequest,
     } = this.props;
     const { categorySelected } = this.state;
 
     return (
       <Container>
         <Categories>
-          {categories.data.map(category => (
-            <CategoryButton
-              key={category.id}
-              onPress={() => this.handleClick(category.id)}
-              active={categorySelected === category.id}
-            >
-              <CategoryLabel active={categorySelected === category.id}>
-                {category.title}
-              </CategoryLabel>
-            </CategoryButton>
-          ))}
-        </Categories>
-        <ProductsList
-          data={productsByCategory.length > 0 ? productsByCategory : []}
-          keyExtractor={product => String(product.id)}
-          renderItem={({ item: product }) => (
-            <Product onPress={() => navigation.navigate('ProductDetail', { product })}>
-              <Image source={{ uri: product.image }} />
-              <Name>{product.name}</Name>
-              <Brand>{product.brand}</Brand>
-              <Price>{product.price}</Price>
-            </Product>
+          {loadingCategories ? (
+            <Loading size="small" color="#FFF" />
+          ) : (
+            categories.map(category => (
+              <CategoryButton
+                key={category.id}
+                onPress={() => this.handleClick(category.id)}
+                active={categorySelected === category.id}
+              >
+                <CategoryLabel active={categorySelected === category.id}>
+                  {category.title}
+                </CategoryLabel>
+              </CategoryButton>
+            ))
           )}
-        />
+        </Categories>
+        {loadingProducts ? (
+          <Loading size="large" color="#e79799" />
+        ) : (
+          <ProductsList
+            data={productsByCategory}
+            keyExtractor={product => String(product.id)}
+            renderItem={({ item: product }) => (
+              <Product onPress={() => navigation.navigate('ProductDetail', { product })}>
+                <Image source={{ uri: product.image }} />
+                <Name>{product.name}</Name>
+                <Brand>{product.brand}</Brand>
+                <Price>{`R$ ${product.price}`}</Price>
+              </Product>
+            )}
+          />
+        )}
       </Container>
     );
   }
 }
 
 const mapStateToProps = state => ({
-  categories: state.categories,
+  categories: state.categories.data,
+  loadingCategories: state.categories.loading,
   productsByCategory: state.productsByCategory.data,
+  loadingProducts: state.productsByCategory.loading,
 });
 
 const mapDispatchToProps = dispatch => bindActionCreators({ ...ProductsByCategoryActions, ...CategoriesActions }, dispatch);
