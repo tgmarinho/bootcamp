@@ -23,7 +23,7 @@ A interface da aplicação será como a seguinte:
 - http://localhost:3000/category_products/1 (Busca produtos pelo ID da categoria)
 - http://localhost:3000/products/1 (Busca detalhes do produto pelo ID)
 
-## Video com a solução:
+## Video com a solução (https://youtu.be/HUKkTXnpKEs):
 
-[![Veja o vídeo](https://github.com/Rocketseat/bootcamp-react-native-desafio-04/blob/master/assets/screens.png)](https://youtu.be/HUKkTXnpKEs)
+[![Veja o vídeo](gommerce.png)](https://youtu.be/HUKkTXnpKEs)
 
