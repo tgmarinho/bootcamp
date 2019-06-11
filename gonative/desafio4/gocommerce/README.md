@@ -25,4 +25,5 @@ A interface da aplicação será como a seguinte:
 
 ## Video com a solução:
 
-![Video](https://youtu.be/HUKkTXnpKEs)
+[![Veja o vídeo](https://github.com/Rocketseat/bootcamp-react-native-desafio-04/blob/master/assets/screens.png)](https://youtu.be/HUKkTXnpKEs)
+
