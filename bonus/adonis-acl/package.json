@@ -24,7 +24,8 @@
     "@adonisjs/framework": "^5.0.7",
     "@adonisjs/ignitor": "^2.0.6",
     "@adonisjs/lucid": "^5.0.4",
-    "adonis-acl": "^1.1.1"
+    "adonis-acl": "^1.1.1",
+    "pg": "^7.11.0"
   },
   "devDependencies": {
     "eslint": "^5.4.0",

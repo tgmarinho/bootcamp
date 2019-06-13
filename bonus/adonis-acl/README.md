@@ -19,6 +19,25 @@ adonis new yardstick --api-only
 or manually clone the repo and then run `npm install`.
 
 
+### Docker
+
+Create container
+
+```
+docker run \
+    --name postgres \
+    -e POSTGRES_PASSWORD=root \
+    -e POSTGRES_USER=root \
+    -e POSTGRES_DB=acladonis \
+    -p 5432:5432 \
+    -d \
+    postgres
+```
+
+Starting when is offline:
+ID Container = a46a366365bb (for me)
+`docker start a46a366365bb`
+
 ### Migrations
 
 Run the following command to run startup migrations.
