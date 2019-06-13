@@ -23,7 +23,7 @@ class PostController {
     return post
   }
 
-  async update ({ params, request, response }) {
+  async update ({ params, request }) {
     const data = request.only(['title', 'content', 'type'])
 
     const post = await Post.findOrFail(params.id)
