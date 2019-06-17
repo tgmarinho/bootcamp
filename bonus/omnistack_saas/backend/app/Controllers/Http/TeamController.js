@@ -1,6 +1,5 @@
 'use strict'
 
-class TeamController {
-}
+class TeamController {}
 
 module.exports = TeamController
