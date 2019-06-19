@@ -27,6 +27,7 @@
     "@adonisjs/lucid-slugify": "^1.0.3",
     "@adonisjs/mail": "^3.0.9",
     "@adonisjs/redis": "^2.0.7",
+    "@adonisjs/validator": "^5.0.6",
     "adonis-kue": "^5.0.1",
     "pg": "^7.11.0"
   },
