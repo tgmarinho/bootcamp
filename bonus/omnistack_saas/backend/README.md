@@ -26,3 +26,16 @@ Run the following command to run startup migrations.
 ```js
 adonis migration:run
 ```
+
+
+
+### Docker Redis
+
+Starting container by image redis:alpine.
+
+```> docker run -d -p 6379:6379 -i -t redis:alpine ```
+
+
+### Adonis listen:
+
+```> adonis kue:listen ```
