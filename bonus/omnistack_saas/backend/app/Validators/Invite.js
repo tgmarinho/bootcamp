@@ -6,7 +6,7 @@ class Invite {
   }
   get rules () {
     return {
-      invetes: 'required|array',
+      invites: 'required|array',
       'invites.*': 'required|email'
     }
   }
