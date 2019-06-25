@@ -5,20 +5,35 @@
     "browser": true,
     "jest": true
   },
-  "plugins": ["react", "jsx-a11y", "import"],
+  "plugins": ["eslint-plugin-import-helpers"],
   "rules": {
     "react/jsx-filename-extension": [
       "error",
-      {
-        "extensions": [".js", ".jsx"]
-      }
+      { "extensions": [".js", ".jsx"] }
     ],
-    "import/prefer-default-export": "off"
+    "global-require": "off",
+    "import/prefer-default-export": "off",
+    "no-unused-vars": ["error", { "argsIgnorePattern": "^_" }],
+    "no-unused-expressions": ["error", { "allowTaggedTemplates": true }],
+    "jsx-a11y/label-has-for": "off",
+    "jsx-a11y/media-has-caption": "off",
+    "react/jsx-one-expression-per-line": "off",
+    "react-native/sort-styles": "off",
+    "import-helpers/order-imports": [
+      "warn",
+      {
+        "newlines-between": "always",
+        "groups": [
+          ["builtin", "external", "internal"],
+          ["parent", "sibling", "index"]
+        ],
+        "alphabetize": { "order": "asc", "ignoreCase": true }
+      }
+    ]
   },
   "settings": {
     "import/resolver": {
       "babel-plugin-root-import": {
-        "rootPathPrefix": "~",
         "rootPathSuffix": "src"
       }
     }
