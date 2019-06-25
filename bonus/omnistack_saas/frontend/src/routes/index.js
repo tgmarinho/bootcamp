@@ -7,7 +7,7 @@ import SignUp from '~/pages/Auth/SignUp';
 
 import SignIn from '~/pages/Auth/SignIn';
 
-const Routes = (
+const Routes = () => (
   <BrowserRouter>
     <Switch>
       <Route path="/signin" component={SignIn} />
