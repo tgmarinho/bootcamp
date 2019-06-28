@@ -1,6 +1,6 @@
 import React from 'react';
 import { ConnectedRouter } from 'connected-react-router';
-import { Switch, Route } from 'react-router-dom';
+import { Switch } from 'react-router-dom';
 import history from './history';
 import Private from './private';
 import Guest from './guest';
