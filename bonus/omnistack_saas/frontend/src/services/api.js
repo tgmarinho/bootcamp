@@ -11,7 +11,7 @@ api.interceptors.request.use((config) => {
   const headers = { ...config.headers };
 
   if (token) {
-    headers.Authorization = `Baerer ${token}`;
+    headers.Authorization = `Bearer ${token}`;
   }
 
   return { ...config, headers };
