@@ -1,13 +1,13 @@
 import React, { Component } from 'react';
 import api from '~/services/api';
-// import { Container } from './styles';
+import { Container } from './styles';
 
-export default class Main extends Component {
-  componentDidMount() {
-    api.get('/teste');
-  }
+import TeamSwitcher from '~/components/TeamSwitcher';
 
-  render() {
-    return <h1>Hllow</h1>;
-  }
-}
+const Main = () => (
+  <Container>
+    <TeamSwitcher />
+  </Container>
+);
+
+export default Main;
