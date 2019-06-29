@@ -29,7 +29,7 @@ export const INITIAL_STATE = Immutable({
 export const getSuccess = (state, { data }) => state.merge({ data });
 export const selectTeam = (state, { team }) => {
   localStorage.setItem('@Omni:team', JSON.stringify(team));
-  return state.merge({ team });
+  return state.merge({ active: team });
 };
 
 export const openModal = state => state.merge({ teamModalOpen: true });
