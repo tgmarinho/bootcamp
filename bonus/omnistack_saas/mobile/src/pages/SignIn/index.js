@@ -1,5 +1,7 @@
 import React, { Component } from 'react';
-
+import PropTypes from 'prop-types';
+import { connect } from 'react-redux';
+import { bindActionCreators } from 'redux';
 import {
   View,
   Platform,
@@ -8,10 +10,15 @@ import {
   TextInput,
   TouchableOpacity,
 } from 'react-native';
+import AuthActions from '~/store/ducks/auth';
 
 import styles from './styles';
 
 class SignIn extends Component {
+  static propTypes = {
+    signInRequest: PropTypes.func.isRequired,
+  };
+
   state = {
     email: '',
     password: '',
@@ -19,12 +26,12 @@ class SignIn extends Component {
 
   handleSubmit = () => {
     const { email, password } = this.state;
-
-    // SAGA(email, passwd);
+    const { signInRequest } = this.props;
+    signInRequest(email, password);
   };
 
   render() {
-    const { email, password } = this.props;
+    const { email, password } = this.state;
 
     return (
       <KeyboardAvoidingView
@@ -72,4 +79,9 @@ class SignIn extends Component {
   }
 }
 
-export default SignIn;
+const mapDispatchToProps = dispatch => bindActionCreators(AuthActions, dispatch);
+
+export default connect(
+  null,
+  mapDispatchToProps,
+)(SignIn);
