@@ -16,7 +16,7 @@ class Projects extends Component {
     closeProjectModal: PropTypes.func.isRequired,
     createProjectRequest: PropTypes.func.isRequired,
     openMembersModal: PropTypes.func.isRequired,
-    activeTeam: PropTypes.shape({ name: PropTypes.string }).isRequired,
+    activeTeam: PropTypes.shape({ name: PropTypes.string }),
     projects: PropTypes.shape({
       data: PropTypes.arrayOf(
         PropTypes.shape({
@@ -30,6 +30,10 @@ class Projects extends Component {
       membersModalOpen: PropTypes.bool,
     }).isRequired,
   };
+
+  static defaultProps = {
+    activeTeam: null,
+  }
 
   state = {
     newProject: '',

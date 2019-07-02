@@ -23,3 +23,8 @@ export const MembersList = styled.ul`
     }
   }
 `;
+
+export const Invite = styled.form`
+  padding-bottom: 20px;
+  border-bottom: 1x solid rgba(255, 255, 255, 0.1);
+`;

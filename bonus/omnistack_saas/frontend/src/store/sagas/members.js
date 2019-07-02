@@ -31,3 +31,25 @@ export function* updateMember({ id, roles }) {
     );
   }
 }
+
+export function* inviteMember({ email }) {
+  try {
+    yield call(api.post, 'invites', { invites: [email] });
+
+    yield put(
+      toastrActions.add({
+        type: 'success',
+        title: 'Convite enviado',
+        message: 'Enviamos um convite ao usuário para participar do time',
+      }),
+    );
+  } catch (error) {
+    yield put(
+      toastrActions.add({
+        type: 'error',
+        title: 'Erro na operação',
+        message: 'Houve um erro, tente novamente!',
+      }),
+    );
+  }
+}
