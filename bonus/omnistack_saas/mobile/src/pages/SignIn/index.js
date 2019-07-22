@@ -27,6 +27,7 @@ class SignIn extends Component {
   handleSubmit = () => {
     const { email, password } = this.state;
     const { signInRequest } = this.props;
+
     signInRequest(email, password);
   };
 
@@ -70,7 +71,7 @@ class SignIn extends Component {
             onSubmitEditing={this.handleSubmit}
           />
 
-          <TouchableOpacity onPress={() => {}} style={styles.button}>
+          <TouchableOpacity onPress={this.handleSubmit} style={styles.button}>
             <Text style={styles.buttonText}>Entrar</Text>
           </TouchableOpacity>
         </View>

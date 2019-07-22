@@ -4,10 +4,12 @@ import '~/config/StatusBarConfig';
 import store from './store';
 import Routes from './routes';
 
-const App = () => (
+import App from './App';
+
+const Root = () => (
   <Provider store={store}>
-    <Routes />
+    <App />
   </Provider>
 );
 
-export default App;
+export default Root;
