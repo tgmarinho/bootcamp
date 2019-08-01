@@ -8,19 +8,33 @@ import { bindActionCreators } from 'redux';
 import Icon from 'react-native-vector-icons/MaterialIcons';
 import ProjectActions from '~/store/ducks/projects';
 
+import NewProjet from '~/components/NewProject';
+
 import styles from './styles';
 
 class Projects extends Component {
+  state = {
+    isModalOpen: false,
+  };
+
   componentDidMount() {
-    console.tron.log(this.props);
     const { getProjectsRequest, activeTeam } = this.props;
     if (activeTeam) {
       getProjectsRequest();
     }
   }
 
+  toogleModalOpen = () => {
+    this.setState({ isModalOpen: true });
+  };
+
+  toogleModalClosed = () => {
+    this.setState({ isModalOpen: false });
+  };
+
   render() {
     const { projects, activeTeam } = this.props;
+    const { isModalOpen } = this.state;
 
     console.tron.log(projects, activeTeam);
 
@@ -38,9 +52,11 @@ class Projects extends Component {
             </View>
           )}
         />
-        <TouchableOpacity style={styles.newProjectButton} onPress={() => {}}>
+        <TouchableOpacity style={styles.newProjectButton} onPress={this.toogleModalOpen}>
           <Icon name="add" size={28} color="#FFF" />
         </TouchableOpacity>
+
+        <NewProjet visible={isModalOpen} onRequestClose={this.toogleModalClosed} />
       </View>
     );
   }
