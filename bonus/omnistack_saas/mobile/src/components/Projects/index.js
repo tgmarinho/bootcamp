@@ -9,6 +9,7 @@ import Icon from 'react-native-vector-icons/MaterialIcons';
 import ProjectActions from '~/store/ducks/projects';
 
 import NewProjet from '~/components/NewProject';
+import Can from '~/components/Can';
 
 import styles from './styles';
 
@@ -52,9 +53,11 @@ class Projects extends Component {
             </View>
           )}
         />
-        <TouchableOpacity style={styles.newProjectButton} onPress={this.toogleModalOpen}>
-          <Icon name="add" size={28} color="#FFF" />
-        </TouchableOpacity>
+        <Can checkPermission="projects_create">
+          <TouchableOpacity style={styles.newProjectButton} onPress={this.toogleModalOpen}>
+            <Icon name="add" size={28} color="#FFF" />
+          </TouchableOpacity>
+        </Can>
 
         <NewProjet visible={isModalOpen} onRequestClose={this.toogleModalClosed} />
       </View>

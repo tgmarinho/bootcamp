@@ -46,11 +46,11 @@ class RoleUpdater extends Component {
           {roles.map(role => (
             <View key={role.id} style={styles.roleContainer}>
               <Text style={styles.roleText}>{role.name}</Text>
-              <Switch
-                value={!!member.roles.find(memberRole => memberRole.id === role.id)}
-                onValueChange={value => this.handleRoleChange(value, role)}
-                disabled={role.slug === 'administrator'}
-              />
+                <Switch
+                  value={!!member.roles.find(memberRole => memberRole.id === role.id)}
+                  onValueChange={value => this.handleRoleChange(value, role)}
+                  disabled={role.slug === 'administrator'}
+                />
             </View>
           ))}
         </View>
