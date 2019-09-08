@@ -1,31 +1,59 @@
 import React, {Component} from 'react';
-import {View, StyleSheet, Animated} from 'react-native';
+import {View, StyleSheet, Animated, PanResponder} from 'react-native';
+
+// PanResponder manipulação de gestos
 
 class App extends Component {
   state = {
-    ballY: new Animated.Value(0),
+    ball: new Animated.ValueXY({x: 0, y: 0}),
   };
 
-  componentDidMount() {
-    Animated.timing(this.state.ballY, {
-      toValue: 500,
-      duration: 1000,
-    }).start();
+  componentWillMount() {
+    this._panResponder = PanResponder.create({
+      onPanResponderGrant: (e, gestureState) => {
+        this.state.ball.setOffset({
+          x: this.state.ball.x._value,
+          y: this.state.ball.y._value,
+        });
+
+        this.state.ball.setValue({x: 0, y: 0});
+      },
+
+      onMoveShouldSetPanResponder: (e, gestureState) => true,
+
+      onPanResponderMove: Animated.event(
+        [
+          null,
+          {
+            dx: this.state.ball.x,
+            dy: this.state.ball.y,
+          },
+        ],
+        {
+          listener: (e, gestureState) => {
+            console.log(gestureState);
+          },
+        },
+      ),
+
+      onPanResponderRelease: () => {
+        this.state.ball.flattenOffset();
+      },
+    });
   }
 
   render() {
     return (
       <View style={styles.container}>
         <Animated.View
+          {...this._panResponder.panHandlers}
           style={[
             styles.ball,
             {
-              top: this.state.ballY,
-              opacity: this.state.ballY.interpolate({
-                inputRange: [0, 300],
-                outputRange: [1, 0.2],
-                extrapolate: 'clamp',
-              }),
+              transform: [
+                {translateX: this.state.ball.x},
+                {translateY: this.state.ball.y},
+              ],
             },
           ]}
         />
