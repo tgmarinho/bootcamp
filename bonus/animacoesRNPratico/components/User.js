@@ -6,9 +6,7 @@ import {
   View,
   Text,
   Image,
-  Alert,
   StyleSheet,
-  Dimensions,
   TouchableWithoutFeedback,
   Animated,
 } from 'react-native';
@@ -17,37 +15,52 @@ import Icon from 'react-native-vector-icons/FontAwesome';
 
 export default class User extends Component {
   state = {
+    opacity: new Animated.Value(0),
     offset: new Animated.ValueXY({x: 0, y: 50}),
   };
 
   componentDidMount() {
-    Animated.spring(this.state.offset.y, {
-      toValue: 0,
-      speed: 5,
-      bounciness: 20,
-    }).start();
+    Animated.parallel([
+      Animated.spring(this.state.offset.y, {
+        toValue: 0,
+        speed: 5,
+        bounciness: 20,
+      }),
+      Animated.timing(this.state.opacity, {
+        toValue: 1,
+        duration: 500,
+      }),
+    ]).start();
   }
 
   render() {
     const {user} = this.props;
 
     return (
-      <TouchableWithoutFeedback onPress={this.props.onPress}>
-        <View style={styles.userContainer}>
-          <Image style={styles.thumbnail} source={{uri: user.thumbnail}} />
+      <Animated.View
+        style={[
+          {
+            transform: [...this.state.offset.getTranslateTransform()],
+          },
+          {opacity: this.state.opacity},
+        ]}>
+        <TouchableWithoutFeedback onPress={this.props.onPress}>
+          <View style={styles.userContainer}>
+            <Image style={styles.thumbnail} source={{uri: user.thumbnail}} />
 
-          <View style={[styles.infoContainer, {backgroundColor: user.color}]}>
-            <View style={styles.bioContainer}>
-              <Text style={styles.name}>{user.name.toUpperCase()}</Text>
-              <Text style={styles.description}>{user.description}</Text>
-            </View>
-            <View style={styles.likesContainer}>
-              <Icon name="heart" size={12} color="#FFF" />
-              <Text style={styles.likes}>{user.likes}</Text>
+            <View style={[styles.infoContainer, {backgroundColor: user.color}]}>
+              <View style={styles.bioContainer}>
+                <Text style={styles.name}>{user.name.toUpperCase()}</Text>
+                <Text style={styles.description}>{user.description}</Text>
+              </View>
+              <View style={styles.likesContainer}>
+                <Icon name="heart" size={12} color="#FFF" />
+                <Text style={styles.likes}>{user.likes}</Text>
+              </View>
             </View>
           </View>
-        </View>
-      </TouchableWithoutFeedback>
+        </TouchableWithoutFeedback>
+      </Animated.View>
     );
   }
 }
