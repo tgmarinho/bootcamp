@@ -4,51 +4,30 @@ import {View, StyleSheet, Animated} from 'react-native';
 class App extends Component {
   state = {
     ballY: new Animated.Value(0),
-    ballX: new Animated.Value(0),
   };
 
   componentDidMount() {
-    Animated.loop(
-      Animated.sequence([
-        Animated.timing(this.state.ballY, {
-          toValue: 200,
-          duration: 500,
-        }),
-
-        Animated.delay(200),
-
-        Animated.timing(this.state.ballX, {
-          toValue: 200,
-          duration: 500,
-        }),
-
-        Animated.delay(200),
-
-        Animated.timing(this.state.ballY, {
-          toValue: 0,
-          duration: 500,
-        }),
-
-        Animated.delay(200),
-
-        Animated.timing(this.state.ballX, {
-          toValue: 0,
-          duration: 500,
-        }),
-
-        Animated.delay(200),
-      ]),
-      {
-        iterations: 3,
-      },
-    ).start();
+    Animated.timing(this.state.ballY, {
+      toValue: 500,
+      duration: 1000,
+    }).start();
   }
 
   render() {
     return (
       <View style={styles.container}>
         <Animated.View
-          style={[styles.ball, {top: this.state.ballY, left: this.state.ballX}]}
+          style={[
+            styles.ball,
+            {
+              top: this.state.ballY,
+              opacity: this.state.ballY.interpolate({
+                inputRange: [0, 300],
+                outputRange: [1, 0.2],
+                extrapolate: 'clamp',
+              }),
+            },
+          ]}
         />
       </View>
     );
