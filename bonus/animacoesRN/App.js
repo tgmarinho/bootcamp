@@ -1,38 +1,28 @@
 import React, {Component} from 'react';
 import {View, StyleSheet, Animated} from 'react-native';
 
+const ballY = new Animated.Value(0);
+// const ballX = Animated.divide(ballY, 2);
+const ballX = Animated.multiply(ballY, 2);
+
 class App extends Component {
   state = {
-    ballY: new Animated.Value(0),
+    ballY: ballY,
+    ballX: ballX,
   };
 
-  // timing
   componentDidMount() {
-    Animated.timing(this.state.ballY, {
-      toValue: 500,
-      duration: 1000,
+    Animated.decay(this.state.ballY, {
+      velocity: 0.3,
     }).start();
   }
-
-  // spring
-  // componentDidMount() {
-  //   Animated.spring(this.state.ballY, {
-  //     toValue: 300,
-  //     bounciness: 20,
-  //   }).start();
-  // }
-
-  // decay
-  // componentDidMount() {
-  //   Animated.decay(this.state.ballY, {
-  //     velocity: 0.5,
-  //   }).start();
-  // }
 
   render() {
     return (
       <View style={styles.container}>
-        <Animated.View style={[styles.ball, {top: this.state.ballY}]} />
+        <Animated.View
+          style={[styles.ball, {top: this.state.ballY, left: this.state.ballX}]}
+        />
       </View>
     );
   }
