@@ -6,12 +6,28 @@ class App extends Component {
     ballY: new Animated.Value(0),
   };
 
+  // timing
   componentDidMount() {
     Animated.timing(this.state.ballY, {
       toValue: 500,
       duration: 1000,
     }).start();
   }
+
+  // spring
+  // componentDidMount() {
+  //   Animated.spring(this.state.ballY, {
+  //     toValue: 300,
+  //     bounciness: 20,
+  //   }).start();
+  // }
+
+  // decay
+  // componentDidMount() {
+  //   Animated.decay(this.state.ballY, {
+  //     velocity: 0.5,
+  //   }).start();
+  // }
 
   render() {
     return (
