@@ -12,7 +12,7 @@
     "jsonwebtoken": "^8.5.1",
     "nodemailer": "^6.1.1",
     "pg": "^7.11.0",
-    "sequelize": "^5.8.6"
+    "sequelize": "^5.15.1"
   },
   "devDependencies": {
     "factory-girl": "^5.0.4",
