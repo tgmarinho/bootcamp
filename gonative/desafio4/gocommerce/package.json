@@ -8,7 +8,7 @@
     "jsonws": "json-server server.json -p 3000 -w -d 500"
   },
   "dependencies": {
-    "axios": "^0.18.0",
+    "axios": "^0.21.1",
     "prop-types": "^15.7.2",
     "react": "16.8.3",
     "react-native": "0.59.8",
