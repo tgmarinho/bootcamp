@@ -7,7 +7,7 @@
     "bcrypt": "^3.0.6",
     "bcryptjs": "^2.4.3",
     "dotenv": "^8.0.0",
-    "express": "^4.17.0",
+    "express": "^4.17.3",
     "faker": "^4.1.0",
     "jsonwebtoken": "^8.5.1",
     "nodemailer": "^6.1.1",
