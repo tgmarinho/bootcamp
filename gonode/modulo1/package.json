@@ -7,7 +7,7 @@
     "start": "nodemon index.js"
   },
   "dependencies": {
-    "express": "^4.16.4",
+    "express": "^4.17.3",
     "nunjucks": "^3.2.0"
   },
   "devDependencies": {
